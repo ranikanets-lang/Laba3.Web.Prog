@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Porten — магазин часов" />
+    <title>Porten</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <header class="header">
+      <div class="header__top">
+        <div class="container header__top-inner">
+          <div class="header__contacts">
+            <span class="header__contacts-item">
+              <img class="icon" src="./assets/icons/phone.svg" alt="" />
+              <a class="link link--muted" href="tel:+78121234567">8 (812) 123-45-67</a>
+            </span>
+            <span class="header__contacts-sep">|</span>
+            <span class="header__contacts-item">Работаем 7 дней в неделю</span>
+            <span class="header__contacts-sep">|</span>
+            <span class="header__contacts-item">9:00 — 18:00</span>
+          </div>
+
+          <a class="header__auth link link--muted" href="#">
+            <img class="icon" src="./assets/icons/login.svg" alt="" />
+            Войти / Регистрация
+          </a>
+        </div>
+      </div>
+
+      <div class="header__main">
+        <div class="container header__main-inner">
+          <a class="logo" href="#" aria-label="Porten">
+            <img class="logo__img" src="./assets/logo.svg" alt="Porten" />
+          </a>
+
+          <nav class="nav" aria-label="Основная навигация">
+            <ul class="nav__list">
+              <li class="nav__item"><a class="nav__link" href="#liked">Понравилось</a></li>
+              <li class="nav__item"><a class="nav__link" href="#cabinet">Личный кабинет</a></li>
+              <li class="nav__item"><a class="nav__link" href="#settings">Настройки</a></li>
+              <li class="nav__item nav__item--icon">
+                <a class="icon-link" href="#" aria-label="Корзина">
+                  <img class="icon-link__img" src="./assets/icons/cart.svg" alt="" />
+                </a>
+              </li>
+              <li class="nav__item nav__item--icon">
+                <a class="icon-link" href="#" aria-label="Поиск">
+                  <img class="icon-link__img" src="./assets/icons/search.svg" alt="" />
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-label="Промо">
+        <div class="hero__bg" role="img" aria-label="Фоновое изображение"></div>
+        <div class="hero__content">
+          <div class="hero__badge" aria-label="Porten Saint Petersburg">
+            <div class="hero__badge-logo">PORTEN</div>
+            <div class="hero__badge-line"></div>
+            <div class="hero__badge-city">SANкт‑ПЕТЕРБУРГ</div>
+          </div>
+
+          <p class="hero__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus interdum purus,
+            est tortor pulvinar ut in. Fringilla a diam enim sed justo, sed iaculis sagittis.
+            Tortor id eu interdum nec ut iaculis.
+          </p>
+        </div>
+      </section>
+
+      <section class="two-col">
+        <div class="two-col__grid">
+          <section class="season" aria-labelledby="season-title">
+            <div class="season__inner">
+              <h2 class="title title--light" id="season-title">Сезон 2020/21</h2>
+              <div class="divider divider--light"></div>
+
+              <div class="cards cards--season">
+                <article class="card">
+                  <a class="card__media" href="#" aria-label="Louis XVI ATHOS">
+                    <img class="card__img" src="./62050 1.png" alt="Часы Louis XVI ATHOS" />
+                  </a>
+                  <h3 class="card__title">Louis XVI ATHOS</h3>
+                  <p class="card__price">165 000 руб.</p>
+                </article>
+
+                <article class="card">
+                  <a class="card__media" href="#" aria-label="Louis XVI ATHOS">
+                    <img class="card__img" src="./62050 1 (1).png" alt="Часы Louis XVI ATHOS" />
+                  </a>
+                  <h3 class="card__title">Louis XVI ATHOS</h3>
+                  <p class="card__price">165 000 руб.</p>
+                </article>
+
+                <article class="card">
+                  <a class="card__media" href="#" aria-label="Louis XVI ATHOS">
+                    <img class="card__img" src="./62050 1 (2).png" alt="Часы Louis XVI ATHOS" />
+                  </a>
+                  <h3 class="card__title">Louis XVI ATHOS</h3>
+                  <p class="card__price">165 000 руб.</p>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="collection" aria-labelledby="collection-title">
+            <div class="collection__bg" role="img" aria-label="Новая коллекция"></div>
+            <div class="collection__content">
+              <h2 class="title title--light" id="collection-title">Новая коллекция</h2>
+              <div class="divider divider--light"></div>
+              <a class="btn btn--ghost" href="#">Каталог</a>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="two-col two-col--reverse">
+        <div class="two-col__grid">
+          <section class="lookbook" aria-label="Изображение коллекции">
+            <div class="lookbook__bg" role="img" aria-label="Фото"></div>
+          </section>
+
+          <section class="about" aria-labelledby="about-title">
+            <div class="about__inner">
+              <h2 class="title title--light" id="about-title">Коллекция 2018</h2>
+              <div class="divider divider--light"></div>
+              <p class="about__text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non rutrum ornare ut
+                mattis habitant dui arcu. Sagittis amet nunc ut neque quis nibh arcu. Vivamus
+                vestibulum nisi et venenatis sed scelerisque magna consectetur. Amet convallis
+                quis gravida facilisis vulputate. Faucibus facilisi habitasse ipsum interdum
+                dictum aliquet. Velit quis ullamcorper pulvinar nulla malesuada integer.
+              </p>
+              <a class="btn btn--ghost" href="#">Посмотреть коллекцию</a>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="products" aria-labelledby="products-title">
+        <div class="container">
+          <h2 class="title title--light title--center" id="products-title">Новые поступления</h2>
+          <div class="divider divider--light divider--center"></div>
+
+          <div class="products__grid">
+            <article class="card card--dark">
+              <a class="card__media" href="#" aria-label="Carl von Zeyten">
+                <img class="card__img" src="./62050 1 (3).png" alt="Часы Carl von Zeyten" />
+              </a>
+              <h3 class="card__title">Carl von Zeyten</h3>
+              <p class="card__price">165 000 руб.</p>
+            </article>
+            <article class="card card--dark">
+              <a class="card__media" href="#" aria-label="JORD AR5905">
+                <img class="card__img" src="./62050 1 (4).png" alt="Часы JORD AR5905" />
+              </a>
+              <h3 class="card__title">JORD AR5905</h3>
+              <p class="card__price">65 000 руб.</p>
+            </article>
+            <article class="card card--dark">
+              <a class="card__media" href="#" aria-label="Emporio Armani Sportivo">
+                <img class="card__img" src="./62050 1 (5).png" alt="Часы Emporio Armani Sportivo" />
+              </a>
+              <h3 class="card__title">Emporio Armani Sportivo</h3>
+              <p class="card__price">165 000 руб.</p>
+            </article>
+            <article class="card card--dark">
+              <a class="card__media" href="#" aria-label="Rolex Oyster Perpetual">
+                <img class="card__img" src="./62050 1 (6).png" alt="Часы Rolex Oyster Perpetual" />
+              </a>
+              <h3 class="card__title">Rolex Oyster Perpetual</h3>
+              <p class="card__price">280 000 руб.</p>
+            </article>
+
+            <article class="card card--dark">
+              <a class="card__media" href="#" aria-label="Louis XVI ATHOS">
+                <img class="card__img" src="./62050 1 (7).png" alt="Часы Louis XVI ATHOS" />
+              </a>
+              <h3 class="card__title">Louis XVI ATHOS</h3>
+              <p class="card__price">165 000 руб.</p>
+            </article>
+            <article class="card card--dark">
+              <a class="card__media" href="#" aria-label="U-Boat Italo Fontana">
+                <img class="card__img" src="./62050 1 (8).png" alt="Часы U-Boat Italo Fontana" />
+              </a>
+              <h3 class="card__title">U-Boat Italo Fontana</h3>
+              <p class="card__price">18 700 руб.</p>
+            </article>
+            <article class="card card--dark">
+              <a class="card__media" href="#" aria-label="Gucci Men's G-Timeless">
+                <img class="card__img" src="./62050 1 (9).png" alt="Часы Gucci Men's G-Timeless" />
+              </a>
+              <h3 class="card__title">Gucci Men's G-Timeless</h3>
+              <p class="card__price">38 500 руб.</p>
+            </article>
+            <article class="card card--dark">
+              <a class="card__media" href="#" aria-label="Montblanc Summit">
+                <img class="card__img" src="./62050 1 (10).png" alt="Часы Montblanc Summit" />
+              </a>
+              <h3 class="card__title">Montblanc Summit</h3>
+              <p class="card__price">76 000 руб.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="brands" aria-labelledby="brands-title">
+        <div class="container">
+          <h2 class="title title--light title--center" id="brands-title">Наши бренды</h2>
+          <div class="divider divider--light divider--center"></div>
+
+          <div class="brands__row">
+            <a class="brand" href="#" aria-label="Brand 1">
+              <img class="brand__img" src="./Rectangle 2.png" alt="Coco Fine Jewelry" />
+            </a>
+            <a class="brand" href="#" aria-label="Brand 2">
+              <img class="brand__img" src="./Rectangle 12.png" alt="Coco Fine Jewelry" />
+            </a>
+            <a class="brand" href="#" aria-label="Brand 3">
+              <img class="brand__img" src="./Rectangle 13.png" alt="Coco Fine Jewelry" />
+            </a>
+            <a class="brand" href="#" aria-label="Brand 4">
+              <img class="brand__img" src="./Rectangle 14.png" alt="Coco Fine Jewelry" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" aria-label="Подвал">
+      <section class="footer__top" aria-label="Информация">
+        <div class="container footer__cols">
+          <section class="footer__col" aria-labelledby="footer-about">
+            <h2 class="footer__title" id="footer-about">О магазине</h2>
+            <p class="footer__text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi semper viverra nunc
+              cursus tortor lectus nunc nulla nibh. Egestas amet consectetur vel vitae aliquam
+              dictum suspendisse. Lobortis eget consequat, tellus et et sed turpis.
+            </p>
+          </section>
+
+          <section class="footer__col" aria-labelledby="footer-categories">
+            <h2 class="footer__title" id="footer-categories">Категории</h2>
+            <div class="tags" aria-label="Список категорий">
+              <a class="tag" href="#">часы</a>
+              <a class="tag" href="#">браслеты</a>
+              <a class="tag" href="#">ремни</a>
+              <a class="tag" href="#">ювелирные изделия</a>
+              <a class="tag" href="#">запонки</a>
+            </div>
+          </section>
+
+          <section class="footer__col" aria-labelledby="footer-mailing">
+            <h2 class="footer__title" id="footer-mailing">Рассылка</h2>
+            <p class="footer__text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi semper viverra nunc
+              cursus tortor lectus nunc nulla nibh.
+            </p>
+
+            <form class="form" action="#" method="post">
+              <label class="form__label" for="email">E-mail</label>
+              <div class="form__row">
+                <input
+                  class="form__input"
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  autocomplete="email"
+                />
+                <button class="form__btn" type="submit">Подписаться</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </section>
+
+      <div class="footer__bottom">
+        <div class="container footer__bottom-inner">
+          <small class="footer__copy">© 2020 Все права защищены</small>
+          <a class="footer__policy link link--muted" href="#">Политика конфиденциальности</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
