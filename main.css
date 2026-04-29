@@ -345,7 +345,7 @@ a {
     linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.85)),
     url("Rectangle 9.png");
   background-size: cover;
-  background-position: center;
+  background-position: left center;
   filter: grayscale(0.1);
 }
 
