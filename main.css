@@ -513,6 +513,7 @@ a {
 .brand__img {
   width: 255px;
   height: 94px;
+  object-fit: contain;
   opacity: 0.9;
 }
 
