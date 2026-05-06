@@ -345,8 +345,7 @@ a {
     linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.0) 55%),
     linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.85)),
     url("Rectangle 9.png");
-  background-size: 880px auto;
-  background-repeat: no-repeat;
+  background-size: cover;
   background-position: left center;
   filter: grayscale(0.1);
 }
@@ -356,7 +355,7 @@ a {
 }
 
 .about__inner {
-  padding: 300px 80px;
+  padding: 150px 80px;
   display: grid;
   gap: 28px;
   justify-items: center;
