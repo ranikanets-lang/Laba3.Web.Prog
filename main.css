@@ -336,7 +336,8 @@ a {
 
 .lookbook {
   position: relative;
-  min-height: 600px;
+  height: 500px;
+  min-height: auto;
   overflow: hidden;
 }
 
