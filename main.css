@@ -291,6 +291,7 @@ a {
 
 .season__inner {
   padding: 90px 80px;
+  text-aling: center;
 }
 
 .collection {
@@ -354,7 +355,7 @@ a {
 }
 
 .about__inner {
-  padding: 150px 80px;
+  padding: 300px 80px;
   display: grid;
   gap: 28px;
   justify-items: center;
