@@ -699,6 +699,72 @@ a {
   text-decoration: underline;
 }
 
+/* Планшет (до 1200px) */
+@media (max-width: 1200px) {
+  /* Контейнер */
+  .container {
+    max-width: 960px;
+    padding: 0 20px;
+  }
+  
+  /* Сетка товаров: 4 → 3 колонки */
+  .products__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px 20px;
+  }
+  
+  /* Карточки сезона */
+  .cards--season {
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Отступы */
+  .season__inner,
+  .about__inner {
+    padding: 70px 40px;
+  }
+  
+  /* Блоки с картинками */
+  .collection {
+    min-height: 600px;
+  }
+  
+  .lookbook {
+    min-height: 500px;
+  }
+  
+  /* Бренды */
+  .brands__row {
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .brand {
+    width: 220px;
+  }
+  
+  /* Подвал */
+  .footer__col {
+    padding-right: 20px;
+  }
+  
+  /* Герой */
+  .hero__badge {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .hero__badge-logo {
+    font-size: 54px;
+  }
+  
+  /* Навигация */
+  .nav__list {
+    gap: 16px;
+  }
+}
+
 @media (max-width: 768px) {
   body, html {
     overflow-x: hidden;
