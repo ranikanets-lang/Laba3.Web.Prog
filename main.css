@@ -700,6 +700,23 @@ a {
 }
 
 @media (max-width: 768px) {
+  body, html {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+  
+  .container {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow-x: hidden;
+  }
+  
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
   .two-col__grid {
     grid-template-columns: 1fr;
   }
