@@ -902,8 +902,23 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .brands__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
   .brand {
+    width: 140px;
+    height: auto;
+    padding: 10px;
+  }
+
+  .brand__img {
     width: 100%;
+    height: auto;
+    max-width: 120px;
   }
 
   .form__row {
