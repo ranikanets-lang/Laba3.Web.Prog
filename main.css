@@ -760,6 +760,19 @@ a {
     padding-right: 0;
     margin-bottom: 28px;
   }
+
+  .two-col--reverse .two-col__grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about {
+    order: 1;
+  }
+
+  .lookbook {
+    order: 2;
+  }
 }
 
 @media (max-width: 320px) {
@@ -822,6 +835,18 @@ a {
 
   .form__btn {
     width: 100%;
+  }
+  .two-col--reverse .two-col__grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about {
+    order: 1;
+  }
+
+  .lookbook {
+    order: 2;
   }
 }
 
