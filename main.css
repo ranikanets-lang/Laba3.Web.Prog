@@ -856,6 +856,25 @@ a {
   .lookbook {
     order: 2;
   }
+
+  .brands__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .brand {
+    width: 160px;  /* было 220 - уменьшили */
+    height: auto;
+    padding: 8px;
+  }
+
+  .brand__img {
+    width: 100%;
+    height: auto;
+    max-width: 140px;
+  }
 }
 
 @media (max-width: 320px) {
