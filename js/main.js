@@ -116,3 +116,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 });
+
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
+};
+
+const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+            scrollObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-animate]').forEach(el => {
+        scrollObserver.observe(el);
+    });
+});
