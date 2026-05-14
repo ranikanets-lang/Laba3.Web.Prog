@@ -1,0 +1,21 @@
+﻿{
+  "name": "porten-store",
+  "version": "1.0.0",
+  "description": "Интернет-магазин мужской одежды и аксессуаров PORTEN. Санкт-Петербург.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "json-server --watch data/db.json --port 3000",
+    "frontend": "serve . -l 5500",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "start": "serve . -l 5500"
+  },
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "json-server": "^0.17.4",
+    "serve": "^14.2.1"
+  }
+}

@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" data-i18n="meta.description" content="PORTEN — элитные мужские аксессуары в Санкт-Петербурге. Часы, ремни, кошельки премиум-класса.">
+    <title data-i18n="meta.title">PORTEN — Мужские аксессуары премиум-класса | Санкт-Петербург</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/adaptive.css">
+
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <meta name="theme-color" content="#1a1a1a">
+</head>
+<body>
+<div class="preloader" data-preloader>
+    <div class="preloader__spinner"></div>
+    <div class="preloader__text" data-i18n="common.loading">Загрузка...</div>
+</div>
+
+<header class="header" data-header>
+    <div class="container header__container">
+        <a href="index.html" class="header__logo">
+            <span class="header__logo-text">PORTEN</span>
+        </a>
+
+        <nav class="header__nav" role="navigation" aria-label="Главная навигация">
+            <a href="pages/catalog.html" class="header__link" data-i18n="header.catalog">Каталог</a>
+            <a href="pages/about.html" class="header__link" data-i18n="header.about">О магазине</a>
+            <a href="pages/contacts.html" class="header__link" data-i18n="header.contacts">Контакты</a>
+        </nav>
+
+        <div class="header__right">
+            <div class="header__location">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M10 2C6.13 2 3 5.13 3 9c0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+                </svg>
+                <span data-i18n="header.location">Санкт-Петербург</span>
+            </div>
+            <button class="header__cart" aria-label="Корзина">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-1.87.18-1.87-.72V8c0-.9.64-1.63 1.54-1.63h.38M10 17a2 2 0 100-4 2 2 0 000 4zm6 0a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <span class="header__cart-count">0</span>
+            </button>
+            <button class="header__user-btn" aria-label="Личный кабинет">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M10 2a4 4 0 100 8 4 4 0 000-8zm0 10c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main id="main-content">
+    <section class="hero" data-hero>
+        <div class="hero__bg">
+            <img src="assets/images/hero-bg.jpg" alt="" aria-hidden="true">
+            <div class="hero__overlay"></div>
+        </div>
+        <div class="hero__content">
+            <div class="container">
+                <div class="hero__logo">
+                    <h1 class="hero__title">PORTEN</h1>
+                    <p class="hero__subtitle" data-i18n="hero.subtitle">САНКТ-ПЕТЕРБУРГ</p>
+                </div>
+                <p class="hero__text" data-i18n="hero.text">
+                    Мы предлагаем изысканные мужские аксессуары премиум-класса.
+                    Каждый предмет в нашей коллекции — это сочетание безупречного стиля,
+                    качества и внимания к деталям.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="season" data-season>
+        <div class="container">
+            <h2 class="section-title" data-i18n="season.title">СЕЗОН 2024/25</h2>
+            <div class="season__grid">
+                <div class="product-card">
+                    <img src="assets/images/watches/watch-1.png" alt="Louis XVI ATHOS" class="product-card__image">
+                    <h3 class="product-card__title">Louis XVI ATHOS</h3>
+                    <p class="product-card__price">165 000 ₽</p>
+                </div>
+                <div class="product-card">
+                    <img src="assets/images/watches/watch-2.jpg" alt="Louis XVI ATHOS" class="product-card__image">
+                    <h3 class="product-card__title">Louis XVI ATHOS</h3>
+                    <p class="product-card__price">165 000 ₽</p>
+                </div>
+                <div class="product-card">
+                    <img src="assets/images/watches/watch-3.jpg" alt="Louis XVI ATHOS" class="product-card__image">
+                    <h3 class="product-card__title">Louis XVI ATHOS</h3>
+                    <p class="product-card__price">165 000 ₽</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection" data-collection>
+        <div class="container collection__container">
+            <div class="collection__image">
+                <img src="assets/images/collection.jpg" alt="" aria-hidden="true">
+            </div>
+            <div class="collection__content">
+                <h2 class="collection__title" data-i18n="collection.newTitle">НОВАЯ КОЛЛЕКЦИЯ</h2>
+                <p class="collection__text" data-i18n="collection.newText">
+                    Откройте для себя нашу новую коллекцию аксессуаров,
+                    созданную для современных мужчин, ценящих элегантность и качество.
+                </p>
+                <a href="pages/catalog.html" class="btn btn--outline" data-i18n="collection.viewCatalog">КАТАЛОГ</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection collection--reverse" data-collection-2018>
+        <div class="container collection__container">
+            <div class="collection__image">
+                <img src="assets/images/suit.jpg" alt="" aria-hidden="true">
+            </div>
+            <div class="collection__content">
+                <h2 class="collection__title" data-i18n="collection.classicTitle">КОЛЛЕКЦИЯ 2024</h2>
+                <p class="collection__text" data-i18n="collection.classicText">
+                    Классические аксессуары для особых случаев.
+                    Идеальное дополнение к вашему деловому и вечернему гардеробу.
+                </p>
+                <a href="pages/catalog.html" class="btn btn--outline" data-i18n="collection.viewCollection">ПОСМОТРЕТЬ КОЛЛЕКЦИЮ</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="new-arrivals" data-new-arrivals>
+        <div class="container">
+            <h2 class="section-title" data-i18n="newArrivals.title">НОВЫЕ ПОСТУПЛЕНИЯ</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="assets/images/watches/watch-1.jpg" alt="Louis XVI ATHOS" class="product-card__image">
+                    <h3 class="product-card__title">Louis XVI ATHOS</h3>
+                    <p class="product-card__price">165 000 ₽</p>
+                </div>
+                <div class="product-card">
+                    <img src="assets/images/watches/watch-2.jpg" alt="Louis XVI ATHOS" class="product-card__image">
+                    <h3 class="product-card__title">Louis XVI ATHOS</h3>
+                    <p class="product-card__price">165 000 ₽</p>
+                </div>
+                <div class="product-card">
+                    <img src="assets/images/watches/watch-3.jpg" alt="Louis XVI ATHOS" class="product-card__image">
+                    <h3 class="product-card__title">Louis XVI ATHOS</h3>
+                    <p class="product-card__price">165 000 ₽</p>
+                </div>
+                <div class="product-card">
+                    <img src="assets/images/watches/watch-4.jpg" alt="Louis XVI ATHOS" class="product-card__image">
+                    <h3 class="product-card__title">Louis XVI ATHOS</h3>
+                    <p class="product-card__price">165 000 ₽</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="brands" data-brands>
+        <div class="container">
+            <h2 class="section-title" data-i18n="brands.title">НАШИ БРЕНДЫ</h2>
+            <div class="brands__grid">
+                <div class="brand-item">
+                    <img src="assets/images/brands/coco-fine-jewelry.png" alt="COCO Fine Jewelry" class="brand-item__logo">
+                </div>
+                <div class="brand-item">
+                    <img src="assets/images/brands/coco-fine-jewelry.png" alt="COCO Fine Jewelry" class="brand-item__logo">
+                </div>
+                <div class="brand-item">
+                    <img src="assets/images/brands/coco-fine-jewelry.png" alt="COCO Fine Jewelry" class="brand-item__logo">
+                </div>
+                <div class="brand-item">
+                    <img src="assets/images/brands/coco-fine-jewelry.png" alt="COCO Fine Jewelry" class="brand-item__logo">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer" data-footer>
+    <div class="container">
+        <div class="footer__grid">
+            <div class="footer__about">
+                <h3 class="footer__title" data-i18n="footer.aboutTitle">О МАГАЗИНЕ</h3>
+                <p class="footer__text" data-i18n="footer.aboutText">
+                    PORTEN — это бутик мужских аксессуаров премиум-класса в Санкт-Петербурге.
+                    Мы предлагаем эксклюзивные часы, ремни, кошельки и другие аксессуары
+                    от ведущих мировых производителей.
+                </p>
+            </div>
+            <div class="footer__categories">
+                <h3 class="footer__title" data-i18n="footer.categoriesTitle">КАТЕГОРИИ</h3>
+                <ul class="footer__list">
+                    <li><a href="pages/catalog.html?category=watches" data-i18n="footer.watches">Часы</a></li>
+                    <li><a href="pages/catalog.html?category=belts" data-i18n="footer.belts">Ремни</a></li>
+                    <li><a href="pages/catalog.html?category=wallets" data-i18n="footer.wallets">Кошельки</a></li>
+                    <li><a href="pages/catalog.html?category=accessories" data-i18n="footer.accessories">Аксессуары</a></li>
+                </ul>
+            </div>
+            <div class="footer__newsletter">
+                <h3 class="footer__title" data-i18n="footer.newsletterTitle">РАССЫЛКА</h3>
+                <p class="footer__text" data-i18n="footer.newsletterText">
+                    Подпишитесь на нашу рассылку, чтобы быть в курсе новинок и специальных предложений.
+                </p>
+                <form class="newsletter-form" data-newsletter-form>
+                    <input type="email" class="newsletter-form__input" data-i18n-placeholder="footer.emailPlaceholder" placeholder="Ваш email" required>
+                    <button type="submit" class="btn btn--primary" data-i18n="footer.subscribe">ПОДПИСАТЬСЯ</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p data-i18n="footer.copyright">© 2025 PORTEN. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+﻿{
+  "products": [
+    {
+      "id": 1,
+      "name_i18n": {
+        "ru": "Louis XVI ATHOS",
+        "en": "Louis XVI ATHOS"
+      },
+      "description_i18n": {
+        "ru": "Элегантные часы с механическим заводом в корпусе из нержавеющей стали.",
+        "en": "Elegant mechanical watch in stainless steel case."
+      },
+      "price": 165000,
+      "currency": "RUB",
+      "category": "watches",
+      "image": "assets/images/watches/watch-1.jpg",
+      "inStock": true,
+      "isNew": true,
+      "rating": 4.9,
+      "reviews": 24
+    },
+    {
+      "id": 2,
+      "name_i18n": {
+        "ru": "Montblanc Heritage",
+        "en": "Montblanc Heritage"
+      },
+      "description_i18n": {
+        "ru": "Классические часы с кожаным ремешком и сапфировым стеклом.",
+        "en": "Classic watch with leather strap and sapphire crystal."
+      },
+      "price": 245000,
+      "currency": "RUB",
+      "category": "watches",
+      "image": "assets/images/watches/watch-2.jpg",
+      "inStock": true,
+      "isNew": false,
+      "rating": 4.8,
+      "reviews": 18
+    },
+    {
+      "id": 3,
+      "name_i18n": {
+        "ru": "Tissot PRX Powermatic",
+        "en": "Tissot PRX Powermatic"
+      },
+      "description_i18n": {
+        "ru": "Спортивные часы с автоматическим механизмом и водозащитой 100м.",
+        "en": "Sports watch with automatic movement and 100m water resistance."
+      },
+      "price": 89000,
+      "currency": "RUB",
+      "category": "watches",
+      "image": "assets/images/watches/watch-3.jpg",
+      "inStock": true,
+      "isNew": true,
+      "rating": 4.7,
+      "reviews": 31
+    },
+    {
+      "id": 4,
+      "name_i18n": {
+        "ru": "Hamilton Khaki Field",
+        "en": "Hamilton Khaki Field"
+      },
+      "description_i18n": {
+        "ru": "Тактические часы в стиле милитари с люминесцентными стрелками.",
+        "en": "Military-style tactical watch with luminous hands."
+      },
+      "price": 112000,
+      "currency": "RUB",
+      "category": "watches",
+      "image": "assets/images/watches/watch-4.jpg",
+      "inStock": false,
+      "isNew": false,
+      "rating": 4.6,
+      "reviews": 15
+    },
+    {
+      "id": 5,
+      "name_i18n": {
+        "ru": "Ремень Italian Leather",
+        "en": "Italian Leather Belt"
+      },
+      "description_i18n": {
+        "ru": "Ремень из натуральной итальянской кожи с классической пряжкой.",
+        "en": "Genuine Italian leather belt with classic buckle."
+      },
+      "price": 12500,
+      "currency": "RUB",
+      "category": "belts",
+      "image": "assets/images/belts/belt-1.jpg",
+      "inStock": true,
+      "isNew": false,
+      "rating": 4.9,
+      "reviews": 42
+    },
+    {
+      "id": 6,
+      "name_i18n": {
+        "ru": "Ремень Suede Classic",
+        "en": "Suede Classic Belt"
+      },
+      "description_i18n": {
+        "ru": "Замшевый ремень ручной работы с минималистичной пряжкой.",
+        "en": "Handcrafted suede belt with minimalist buckle."
+      },
+      "price": 8900,
+      "currency": "RUB",
+      "category": "belts",
+      "image": "assets/images/belts/belt-2.jpg",
+      "inStock": true,
+      "isNew": true,
+      "rating": 4.5,
+      "reviews": 28
+    },
+    {
+      "id": 7,
+      "name_i18n": {
+        "ru": "Кошелёк Bifold Premium",
+        "en": "Premium Bifold Wallet"
+      },
+      "description_i18n": {
+        "ru": "Компактный кошелёк из телячьей кожи с отделением для монет.",
+        "en": "Compact calfskin wallet with coin compartment."
+      },
+      "price": 15900,
+      "currency": "RUB",
+      "category": "wallets",
+      "image": "assets/images/wallets/wallet-1.jpg",
+      "inStock": true,
+      "isNew": false,
+      "rating": 4.8,
+      "reviews": 36
+    },
+    {
+      "id": 8,
+      "name_i18n": {
+        "ru": "Кошелёк Cardholder Slim",
+        "en": "Slim Cardholder"
+      },
+      "description_i18n": {
+        "ru": "Ультратонкий держатель для карт из эко-кожи.",
+        "en": "Ultra-slim eco-leather card holder."
+      },
+      "price": 6500,
+      "currency": "RUB",
+      "category": "wallets",
+      "image": "assets/images/wallets/wallet-2.jpg",
+      "inStock": true,
+      "isNew": true,
+      "rating": 4.4,
+      "reviews": 19
+    }
+  ]
+}
