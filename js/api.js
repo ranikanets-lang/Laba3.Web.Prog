@@ -1,5 +1,5 @@
 ﻿const API = {
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://6a0d4f15769682b8ee75f1a1.mockapi.io/users',
 
     async fetch(endpoint, params = {}) {
         const url = new URL(`${this.baseURL}${endpoint}`);
