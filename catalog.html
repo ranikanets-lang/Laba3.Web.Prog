@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог PORTEN</title>
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container header__container">
+        <a href="../index.html" class="header__logo">
+            <span class="header__logo-text">PORTEN</span>
+        </a>
+    </div>
+</header>
+
+<main class="new-arrivals">
+    <div class="container">
+
+        <h1 class="section-title">КАТАЛОГ ТОВАРОВ</h1>
+
+        <input
+                type="text"
+                id="searchInput"
+                placeholder="Поиск..."
+                class="newsletter-form__input"
+                style="margin-bottom:20px;"
+        >
+
+        <select id="sortSelect" class="newsletter-form__input" style="margin-bottom:20px;">
+            <option value="">Сортировка</option>
+            <option value="price">По цене</option>
+            <option value="title">По названию</option>
+            <option value="rating">По рейтингу</option>
+        </select>
+
+        <div style="margin-bottom:20px;">
+            <button class="btn btn--outline category-btn" data-category="all">Все</button>
+            <button class="btn btn--outline category-btn" data-category="Часы">Часы</button>
+            <button class="btn btn--outline category-btn" data-category="Ремни">Ремни</button>
+            <button class="btn btn--outline category-btn" data-category="Кошельки">Кошельки</button>
+        </div>
+
+        <div style="margin-bottom:20px;">
+            <button class="btn btn--outline action-btn" data-action="cheap">
+                Дешевле 100000
+            </button>
+
+            <button class="btn btn--outline action-btn" data-action="expensive">
+                Дороже 100000
+            </button>
+
+            <button class="btn btn--outline action-btn" data-action="top">
+                Высокий рейтинг
+            </button>
+
+            <button class="btn btn--outline action-btn" data-action="new">
+                Новинки
+            </button>
+
+            <button class="btn btn--outline action-btn" data-action="reverse">
+                Обратный порядок
+            </button>
+
+            <button class="btn btn--outline action-btn" data-action="firstFive">
+                Первые 5
+            </button>
+
+            <button class="btn btn--outline action-btn" data-action="lastFive">
+                Последние 5
+            </button>
+
+            <button class="btn btn--outline action-btn" data-action="alphabet">
+                По алфавиту
+            </button>
+
+            <button class="btn btn--outline action-btn" data-action="discount">
+                Со скидкой
+            </button>
+
+            <button class="btn btn--outline action-btn" data-action="all">
+                Сбросить
+            </button>
+        </div>
+
+        <div id="productsContainer" class="products-grid"></div>
+
+        <p id="notFound" style="display:none; color:white; margin-top:20px;">
+            Товары не найдены
+        </p>
+
+    </div>
+</main>
+
+<script src="../js/catalog.js"></script>
+
+</body>
+</html>
