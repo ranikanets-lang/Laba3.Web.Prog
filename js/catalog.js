@@ -1,140 +1,17 @@
-const products = [
-    {
-        title: "Rolex Classic",
-        description: "Элитные мужские часы",
-        price: 165000,
-        rating: 5,
-        category: "Часы",
-        image: "../assets/images/watches/watch-1.jpg"
-    },
+let products = [];
 
-    {
-        title: "Omega Silver",
-        description: "Швейцарские часы",
-        price: 120000,
-        rating: 4,
-        category: "Часы",
-        image: "../assets/images/watches/watch-2.jpg"
-    },
+async function loadProducts() {
 
-    {
-        title: "Louis XVI",
-        description: "Премиальные часы",
-        price: 98000,
-        rating: 5,
-        category: "Часы",
-        image: "../assets/images/watches/watch-3.jpg"
-    },
+    const response = await fetch(
+        "https://6a0d4f15769682b8ee75f1a1.mockapi.io/products"
+    );
 
-    {
-        title: "Black Belt",
-        description: "Кожаный ремень",
-        price: 15000,
-        rating: 4,
-        category: "Ремни",
-        image: "../assets/images/watches/watch-4.jpg"
-    },
+    products = await response.json();
 
-    {
-        title: "Premium Wallet",
-        description: "Кожаный кошелек",
-        price: 20000,
-        rating: 5,
-        category: "Кошельки",
-        image: "../assets/images/watches/watch-1.jpg"
-    },
+    renderProducts(products);
+}
 
-    {
-        title: "Business Watch",
-        description: "Часы для бизнеса",
-        price: 111000,
-        rating: 4,
-        category: "Часы",
-        image: "../assets/images/watches/watch-2.jpg"
-    },
-
-    {
-        title: "Luxury Belt",
-        description: "Ремень класса люкс",
-        price: 17000,
-        rating: 5,
-        category: "Ремни",
-        image: "../assets/images/watches/watch-3.jpg"
-    },
-
-    {
-        title: "Brown Wallet",
-        description: "Коричневый кошелек",
-        price: 13000,
-        rating: 3,
-        category: "Кошельки",
-        image: "../assets/images/watches/watch-4.jpg"
-    },
-
-    {
-        title: "Silver Watch",
-        description: "Серебристые часы",
-        price: 145000,
-        rating: 5,
-        category: "Часы",
-        image: "../assets/images/watches/watch-1.jpg"
-    },
-
-    {
-        title: "Classic Belt",
-        description: "Классический ремень",
-        price: 9000,
-        rating: 4,
-        category: "Ремни",
-        image: "../assets/images/watches/watch-2.jpg"
-    },
-
-    {
-        title: "Mini Wallet",
-        description: "Компактный кошелек",
-        price: 11000,
-        rating: 3,
-        category: "Кошельки",
-        image: "../assets/images/watches/watch-3.jpg"
-    },
-
-    {
-        title: "Gold Watch",
-        description: "Золотые часы",
-        price: 220000,
-        rating: 5,
-        category: "Часы",
-        image: "../assets/images/watches/watch-4.jpg"
-    },
-
-    {
-        title: "Leather Belt",
-        description: "Натуральная кожа",
-        price: 18000,
-        rating: 4,
-        category: "Ремни",
-        image: "../assets/images/watches/watch-1.jpg"
-    },
-
-    {
-        title: "Travel Wallet",
-        description: "Для путешествий",
-        price: 14000,
-        rating: 4,
-        category: "Кошельки",
-        image: "../assets/images/watches/watch-2.jpg"
-    },
-
-    {
-        title: "Modern Watch",
-        description: "Современный дизайн",
-        price: 175000,
-        rating: 5,
-        category: "Часы",
-        image: "../assets/images/watches/watch-3.jpg"
-    }
-];
-
+loadProducts();
 const container = document.getElementById("productsContainer");
 const searchInput = document.getElementById("searchInput");
 const sortSelect = document.getElementById("sortSelect");
