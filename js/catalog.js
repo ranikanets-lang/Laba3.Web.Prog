@@ -1,7 +1,6 @@
 let products = [];
 
 async function loadProducts() {
-
     const response = await fetch(
         "https://6a0d4f15769682b8ee75f1a1.mockapi.io/products"
     );
@@ -9,6 +8,22 @@ async function loadProducts() {
     products = await response.json();
 
     renderProducts(products);
+}
+
+function renderProducts(products) {
+    const container = document.getElementById("container");
+
+    container.innerHTML = "";
+
+    products.forEach(product => {
+        container.innerHTML += 
+            <div class="card">
+                <h2>${product.name_i18n.ru}</h2>
+                <p>${product.description_i18n.ru}</p>
+                <span>${product.price} ₽</span>
+            </div>
+        ;
+    });
 }
 
 loadProducts();
