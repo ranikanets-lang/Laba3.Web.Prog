@@ -2,8 +2,8 @@ let products = [];
 
 async function loadProducts() {
     const response = await fetch(
-        "http://localhost:3000",
-    );
+        "http://localhost:3000/products"
+   );
 
     products = await response.json();
 
