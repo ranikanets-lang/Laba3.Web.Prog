@@ -2,7 +2,7 @@ let products = [];
 
 async function loadProducts() {
     const response = await fetch(
-        "https://6a0d4f15769682b8ee75f1a1.mockapi.io/products"
+        "http://localhost:3000",
     );
 
     products = await response.json();
