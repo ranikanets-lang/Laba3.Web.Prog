@@ -1,4 +1,4 @@
-﻿{
+{
   "products": [
     {
       "id": 1,
@@ -152,5 +152,11 @@
       "rating": 4.4,
       "reviews": 19
     }
-  ]
+  ],
+
+  "users": [],
+
+  "feedback": [],
+
+  "orders": []
 }
