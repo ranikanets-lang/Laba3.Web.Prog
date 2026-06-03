@@ -78,6 +78,13 @@ document
 
         alert("Отзыв отправлен");
 
+        if(user.role === "admin"){
+            alert(
+                "Administrator cannot leave feedback"
+            );
+            return;
+        }
+
         document.getElementById(
             "feedbackText"
         ).value = "";
