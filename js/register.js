@@ -100,6 +100,14 @@ if(password !== confirmPassword){
     return;
 }
 
+const passwordRegex =
+/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,20}$/;
+
+if(!passwordRegex.test(password)){
+    alert("Пароль не соответствует требованиям");
+    return;
+}
+
 form.addEventListener("submit", async (event) => {
 
     event.preventDefault();
@@ -187,7 +195,17 @@ form.addEventListener("submit", async (event) => {
 
             role: "customer"
         };
+        
+    <label>
+        <input
+            type="checkbox"
+            id="agreement"
+            required
+        >
 
+        Я принимаю пользовательское соглашение
+    </label>
+        
         const response =
             await fetch(
                 "http://localhost:3000/users",
