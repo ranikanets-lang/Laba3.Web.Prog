@@ -154,8 +154,7 @@
     }
   ],
 
-  "users": [],
-
+  "users": [
   {
     "id": 1,
     "firstName": "Admin",
@@ -165,7 +164,7 @@
     "password": "Admin123!",
     "role": "admin"
   }
-
+  ]
   "feedback": [],
 
   "orders": []
