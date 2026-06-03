@@ -35,3 +35,45 @@ document
 
     window.location.href = "index.html";
 });
+
+document
+    .getElementById("sendFeedback")
+    .addEventListener("click", async () => {
+
+        const user = JSON.parse(
+            localStorage.getItem("currentUser")
+        );
+
+        const text = document
+            .getElementById("feedbackText")
+            .value;
+
+        if (!text.trim()) {
+            alert("Введите отзыв");
+            return;
+        }
+
+        const feedback = {
+            userId: user.id,
+            nickname: user.nickname,
+            text: text,
+            date: new Date().toLocaleDateString()
+        };
+
+        await fetch(
+            "http://localhost:3000/feedback",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(feedback)
+            }
+        );
+
+        alert("Отзыв отправлен");
+
+        document.getElementById(
+            "feedbackText"
+        ).value = "";
+    });
