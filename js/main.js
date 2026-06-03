@@ -117,6 +117,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
+const user = JSON.parse(
+    localStorage.getItem("currentUser")
+);
+
+if(user){
+
+    document.querySelector(
+        ".header__user-btn"
+    ).innerHTML = user.nickname;
+}
+
 const observerOptions = {
     root: null,
     rootMargin: '0px',
