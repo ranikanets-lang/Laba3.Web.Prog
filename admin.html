@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title><link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/adaptive.css">
+<link rel="stylesheet" href="css/animations.css">
+
+</head>
+<body><h1>Admin Panel</h1><h2>Add Product</h2><form id="productForm"><input
+    type="text"
+    id="title"
+    placeholder="Product Name"
+    required
+>
+
+<input
+    type="number"
+    id="price"
+    placeholder="Price"
+    required
+>
+
+<input
+    type="text"
+    id="category"
+    placeholder="Category"
+    required
+>
+
+<button type="submit">
+    Add Product
+</button>
+
+</form><hr><h2>Products</h2><div id="productsList"></div><hr>
+  
+  <h2>Feedback</h2><div id="feedbackList"></div></body><script src="js/admin.js"></script></html>
