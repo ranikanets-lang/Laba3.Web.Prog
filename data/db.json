@@ -156,6 +156,16 @@
 
   "users": [],
 
+  {
+    "id": 1,
+    "firstName": "Admin",
+    "lastName": "User",
+    "nickname": "Admin001",
+    "email": "admin@mail.com",
+    "password": "Admin123!",
+    "role": "admin"
+  }
+
   "feedback": [],
 
   "orders": []
