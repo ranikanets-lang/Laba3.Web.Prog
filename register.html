@@ -1,7 +1,9 @@
-<!DOCTYPE html><html lang="ru">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация — PORTEN</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
@@ -10,114 +12,174 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/adaptive.css">
     <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/css/register.css">
+    <style>
+        .register-form {
+            max-width: 480px;
+            margin: 60px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 0 20px;
+        }
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .field-group label {
+            font-size: 0.85rem;
+            color: var(--color-text, #ccc);
+        }
+        .field-group label .required {
+            color: #e74c3c;
+            margin-left: 3px;
+        }
+        .field-error {
+            display: none;
+            color: #e74c3c;
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+        .nickname-block {
+            display: flex;
+            gap: 8px;
+        }
+        .nickname-block input {
+            flex: 1;
+        }
+        .password-mode {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .password-mode label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+        .agreement-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .agreement-label a {
+            color: var(--color-accent, #c9a96e);
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body><h1>Регистрация</h1><form id="registerForm" class="register-form">
-    
-<input
-    type="text"
-    id="firstName"
-    placeholder="Имя"
-    required
->
+<body>
 
-<input
-    type="text"
-    id="lastName"
-    placeholder="Фамилия"
-    required
->
+<h1 style="text-align:center; margin-top: 40px;">Регистрация</h1>
 
-<input
-    type="text"
-    id="middleName"
-    placeholder="Отчество (необязательно)"
->
+<form id="registerForm" class="register-form" novalidate>
 
-<input
-    type="email"
-    id="email"
-    placeholder="Email"
-    required
->
+    <!-- Имя -->
+    <div class="field-group">
+        <label for="firstName">Имя <span class="required">*</span></label>
+        <input type="text" id="firstName" placeholder="Иван" required>
+        <span class="field-error" id="firstNameError"></span>
+    </div>
 
-<input
-    type="tel"
-    id="phone"
-    placeholder="+375XXXXXXXXX"
-    pattern="^\+375(25|29|33|44)\d{7}$"
-    required
->
+    <!-- Фамилия -->
+    <div class="field-group">
+        <label for="lastName">Фамилия <span class="required">*</span></label>
+        <input type="text" id="lastName" placeholder="Петров" required>
+        <span class="field-error" id="lastNameError"></span>
+    </div>
 
-<input
-    type="date"
-    id="birthDate"
-    required
->
+    <!-- Отчество -->
+    <div class="field-group">
+        <label for="middleName">Отчество</label>
+        <input type="text" id="middleName" placeholder="Необязательно">
+    </div>
 
-<div class="nickname-block">
-    <input
-        type="text"
-        id="nickname"
-        placeholder="Никнейм"
-        readonly
-    >
+    <!-- Email -->
+    <div class="field-group">
+        <label for="email">Email <span class="required">*</span></label>
+        <input type="email" id="email" placeholder="example@mail.com" required>
+        <span class="field-error" id="emailError"></span>
+    </div>
 
-    <button
-        type="button"
-        id="generateNickname"
-    >
-        Сгенерировать ник
+    <!-- Телефон -->
+    <div class="field-group">
+        <label for="phone">Телефон (РБ) <span class="required">*</span></label>
+        <input type="tel" id="phone" placeholder="+375291234567"
+               pattern="^\+375(25|29|33|44)\d{7}$" required>
+        <span class="field-error" id="phoneError"></span>
+    </div>
+
+    <!-- Дата рождения -->
+    <div class="field-group">
+        <label for="birthDate">Дата рождения <span class="required">*</span></label>
+        <input type="date" id="birthDate" required>
+        <span class="field-error" id="birthDateError"></span>
+    </div>
+
+    <!-- Никнейм -->
+    <div class="field-group">
+        <label for="nickname">Никнейм <span class="required">*</span></label>
+        <div class="nickname-block">
+            <input type="text" id="nickname" placeholder="Никнейм" readonly>
+            <button type="button" id="generateNickname" class="btn btn--outline btn--sm">
+                Сгенерировать
+            </button>
+        </div>
+        <span class="field-error" id="nicknameError"></span>
+    </div>
+
+    <!-- Тип пароля -->
+    <div class="field-group">
+        <label>Способ задания пароля <span class="required">*</span></label>
+        <div class="password-mode">
+            <label>
+                <input type="radio" name="passwordType" value="manual" checked>
+                Ввести самостоятельно
+            </label>
+            <label>
+                <input type="radio" name="passwordType" value="auto">
+                Сгенерировать автоматически
+            </label>
+        </div>
+    </div>
+
+    <!-- Пароль -->
+    <div class="field-group">
+        <label for="password">Пароль <span class="required">*</span></label>
+        <input type="password" id="password" placeholder="Пароль" required>
+        <span class="field-error" id="passwordError"></span>
+    </div>
+
+    <!-- Подтверждение пароля -->
+    <div class="field-group">
+        <label for="confirmPassword">Повторите пароль <span class="required">*</span></label>
+        <input type="password" id="confirmPassword" placeholder="Повторите пароль">
+        <span class="field-error" id="confirmPasswordError"></span>
+    </div>
+
+    <!-- Соглашение -->
+    <div class="field-group">
+        <label class="agreement-label">
+            <input type="checkbox" id="agreement">
+            Я принимаю
+            <a href="#" onclick="alert('Текст соглашения пользователя...')">
+                Пользовательское соглашение
+            </a>
+            <span class="required">*</span>
+        </label>
+        <span class="field-error" id="agreementError"></span>
+    </div>
+
+    <!-- Кнопка -->
+    <button type="submit" id="registerBtn" class="btn btn--primary" disabled>
+        Зарегистрироваться
     </button>
-</div>
 
-<div class="password-mode">
-
-    <label>
-        <input
-            type="radio"
-            name="passwordType"
-            value="manual"
-            checked
-        >
-        Ввести пароль самостоятельно
-    </label>
-
-    <label>
-        <input
-            type="radio"
-            name="passwordType"
-            value="auto"
-        >
-        Сгенерировать пароль
-    </label>
-    
-<input
-    type="password"
-    id="confirmPassword"
-    placeholder="Повторите пароль"
->
-    
-</div>
-
-<input
-    type="password"
-    id="password"
-    placeholder="Пароль"
-    required
->
-
-<button
-    type="submit"
-    id="registerBtn"
-    disabled
->
-    Зарегистрироваться
-</button>
-    
 </form>
 
-    <script src="js/register.js"></script>
-    
+<script src="js/register.js"></script>
 </body>
 </html>
