@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/css/register.css">
 </head>
-<body><h1>Регистрация</h1><form id="registerForm" class="register-form">
-    
-<input
+<body><h1>Регистрация</h1><form id="registerForm" class="register-form"><input
     type="text"
     id="firstName"
     placeholder="Имя"
@@ -31,7 +29,7 @@
 <input
     type="text"
     id="middleName"
-    placeholder="Отчество"
+    placeholder="Отчество (необязательно)"
 >
 
 <input
@@ -45,6 +43,7 @@
     type="tel"
     id="phone"
     placeholder="+375XXXXXXXXX"
+    pattern="^\+375(25|29|33|44)\d{7}$"
     required
 >
 
@@ -53,6 +52,45 @@
     id="birthDate"
     required
 >
+
+<div class="nickname-block">
+    <input
+        type="text"
+        id="nickname"
+        placeholder="Никнейм"
+        readonly
+    >
+
+    <button
+        type="button"
+        id="generateNickname"
+    >
+        Сгенерировать ник
+    </button>
+</div>
+
+<div class="password-mode">
+
+    <label>
+        <input
+            type="radio"
+            name="passwordType"
+            value="manual"
+            checked
+        >
+        Ввести пароль самостоятельно
+    </label>
+
+    <label>
+        <input
+            type="radio"
+            name="passwordType"
+            value="auto"
+        >
+        Сгенерировать пароль
+    </label>
+
+</div>
 
 <input
     type="password"
