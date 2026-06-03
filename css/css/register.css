@@ -12,8 +12,19 @@
     border: 1px solid #555;
     border-radius: 8px;
 }
-
+ 
 .register-form button {
-    padding: 12px;
+    background: #d4af37;
+    color: black;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.register-form button:hover {
+    box-shadow: 0 0 15px #d4af37;
 }
