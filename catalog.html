@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Каталог PORTEN</title>
-
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/adaptive.css">
 </head>
 <body>
 
 <header class="header">
     <div class="container header__container">
-        <a href="../index.html" class="header__logo">
+        <a href="index.html" class="header__logo">
             <span class="header__logo-text">PORTEN</span>
         </a>
     </div>
@@ -27,70 +27,90 @@
 
         <h1 class="section-title">КАТАЛОГ ТОВАРОВ</h1>
 
+        <!-- ЭТАП 3: Поиск -->
         <input
-                type="text"
-                id="searchInput"
-                placeholder="Поиск..."
-                class="newsletter-form__input"
-                style="margin-bottom:20px;"
+            type="text"
+            id="searchInput"
+            placeholder="Поиск по названию или описанию..."
+            class="newsletter-form__input"
+            style="margin-bottom: 16px;"
         >
 
-        <select id="sortSelect" class="newsletter-form__input" style="margin-bottom:20px;">
-            <option value="">Сортировка</option>
+        <!-- ЭТАП 3: Сортировка -->
+        <select id="sortSelect" class="newsletter-form__input" style="margin-bottom: 16px;">
+            <option value="">— Сортировка —</option>
             <option value="price">По цене</option>
             <option value="title">По названию</option>
             <option value="rating">По рейтингу</option>
         </select>
 
-        <div style="margin-bottom:20px;">
+        <!-- ЭТАП 3: Фильтр по категориям -->
+        <div style="margin-bottom: 16px;">
             <button class="btn btn--outline category-btn" data-category="all">Все</button>
-            <button class="btn btn--outline category-btn" data-category="Часы">Часы</button>
-            <button class="btn btn--outline category-btn" data-category="Ремни">Ремни</button>
-            <button class="btn btn--outline category-btn" data-category="Кошельки">Кошельки</button>
+            <button class="btn btn--outline category-btn" data-category="watches">Часы</button>
+            <button class="btn btn--outline category-btn" data-category="belts">Ремни</button>
+            <button class="btn btn--outline category-btn" data-category="wallets">Кошельки</button>
         </div>
 
-        <div style="margin-bottom:20px;">
+        <!-- ЭТАП 2: 10 кнопок с методами массивов -->
+        <div style="margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 8px;">
+
+            <!-- 1. filter -->
             <button class="btn btn--outline action-btn" data-action="cheap">
-                Дешевле 100000
+                filter: до 100 000 ₽
             </button>
 
+            <!-- 2. reduce -->
             <button class="btn btn--outline action-btn" data-action="expensive">
-                Дороже 100000
+                reduce: от 100 000 ₽
             </button>
 
-            <button class="btn btn--outline action-btn" data-action="top">
-                Высокий рейтинг
-            </button>
-
+            <!-- 3. filter + map -->
             <button class="btn btn--outline action-btn" data-action="new">
-                Новинки
+                filter+map: новинки
             </button>
 
-            <button class="btn btn--outline action-btn" data-action="reverse">
-                Обратный порядок
-            </button>
-
-            <button class="btn btn--outline action-btn" data-action="firstFive">
-                Первые 5
-            </button>
-
-            <button class="btn btn--outline action-btn" data-action="lastFive">
-                Последние 5
-            </button>
-
+            <!-- 4. sort -->
             <button class="btn btn--outline action-btn" data-action="alphabet">
-                По алфавиту
+                sort: по алфавиту
             </button>
 
+            <!-- 5. reverse -->
+            <button class="btn btn--outline action-btn" data-action="reverse">
+                reverse: обратный порядок
+            </button>
+
+            <!-- 6. slice (первые 5) -->
+            <button class="btn btn--outline action-btn" data-action="firstFive">
+                slice: первые 5
+            </button>
+
+            <!-- 7. slice (последние 5) -->
+            <button class="btn btn--outline action-btn" data-action="lastFive">
+                slice: последние 5
+            </button>
+
+            <!-- 8. reduce (max) -->
+            <button class="btn btn--outline action-btn" data-action="mostExpensive">
+                reduce: самый дорогой
+            </button>
+
+            <!-- 9. every + some -->
+            <button class="btn btn--outline action-btn" data-action="inStock">
+                every/some: в наличии
+            </button>
+
+            <!-- 10. map (скидка) -->
             <button class="btn btn--outline action-btn" data-action="discount">
-                Со скидкой
+                map: скидка 10%
             </button>
 
-            <button class="btn btn--outline action-btn" data-action="all">
+            <button class="btn btn--primary action-btn" data-action="all">
                 Сбросить
             </button>
         </div>
 
+        <!-- Контейнер для карточек (пустой в HTML — заполняется JS) -->
         <div id="productsContainer" class="products-grid"></div>
 
         <p id="notFound" style="display:none; color:white; margin-top:20px;">
@@ -101,6 +121,5 @@
 </main>
 
 <script src="js/catalog.js"></script>
-
 </body>
 </html>
