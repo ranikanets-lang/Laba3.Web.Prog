@@ -36,6 +36,11 @@ document
     window.location.href = "index.html";
 });
 
+form.addEventListener("input", () => {
+    registerBtn.disabled =
+        !form.checkValidity();
+});
+
 document
     .getElementById("sendFeedback")
     .addEventListener("click", async () => {
