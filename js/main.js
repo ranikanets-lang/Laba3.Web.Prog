@@ -128,6 +128,17 @@ if(user){
     ).innerHTML = user.nickname;
 }
 
+const currentUser = JSON.parse(
+    localStorage.getItem("currentUser")
+);
+
+if(currentUser){
+
+    document.querySelector(
+        ".header__user-btn"
+    ).innerHTML = currentUser.nickname;
+}
+
 const observerOptions = {
     root: null,
     rootMargin: '0px',
