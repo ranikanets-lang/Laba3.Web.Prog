@@ -64,3 +64,10 @@ try {
 }
 
 });
+
+localStorage.setItem(
+    "currentUser",
+    JSON.stringify(user)
+);
+
+window.location.href = "profile.html";
