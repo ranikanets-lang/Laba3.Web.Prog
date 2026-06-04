@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/adaptive.css">
     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/burger.css">
 
     <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
     <meta name="theme-color" content="#1a1a1a">
@@ -27,7 +28,7 @@
     <div class="preloader__spinner"></div>
     <div class="preloader__text" data-i18n="common.loading">Загрузка...</div>
 </div>
-
+        
 <header class="header" data-header>
     <div class="container header__container">
         <a href="index.html" class="header__logo" data-animate>
@@ -40,6 +41,12 @@
             <a href="pages/contacts.html" class="header__link" data-i18n="header.contacts" data-animate data-animate-delay="0.3">Контакты</a>
         </nav>
 
+        <button class="burger" id="burger" aria-label="Меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
         <div class="header__right">
             <div class="header__location" data-animate data-animate-delay="0.4">
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
