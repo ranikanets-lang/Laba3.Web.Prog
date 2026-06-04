@@ -73,4 +73,17 @@
     body.menu-open {
         overflow: hidden;
     }
+
+    /* Ссылки внутри открытого мобильного меню */
+@media (max-width: 768px) {
+    .header__nav.active .header__link {
+        display: block;
+        color: #fff;
+        font-size: 18px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        text-decoration: none;
+        letter-spacing: 2px;
+    }
+}
 }
