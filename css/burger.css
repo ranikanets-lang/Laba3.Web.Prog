@@ -83,4 +83,10 @@
     body.menu-open {
         overflow: hidden;
     }
+    @media (max-width: 768px) {
+    .header__nav.active {
+        display: flex !important;
+        right: 0 !important;
+    }
+}
 }
