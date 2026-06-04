@@ -1,35 +1,31 @@
-// Находим элементы
-var burger = document.getElementById("burger");
-var nav = document.querySelector(".header__nav");
+document.addEventListener("DOMContentLoaded", function() {
 
-// Создаём затемнение и добавляем в body
-var overlay = document.createElement("div");
-overlay.classList.add("overlay");
-document.body.appendChild(overlay);
+    var burger = document.getElementById("burger");
+    var nav = document.querySelector(".header__nav");
 
-// Открыть/закрыть меню
-function toggleMenu() {
-    burger.classList.toggle("active");
-    nav.classList.toggle("active");
-    overlay.classList.toggle("active");
-    document.body.classList.toggle("menu-open");
-}
+    var overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    document.body.appendChild(overlay);
 
-// Закрыть меню
-function closeMenu() {
-    burger.classList.remove("active");
-    nav.classList.remove("active");
-    overlay.classList.remove("active");
-    document.body.classList.remove("menu-open");
-}
+    function toggleMenu() {
+        burger.classList.toggle("active");
+        nav.classList.toggle("active");
+        overlay.classList.toggle("active");
+        document.body.classList.toggle("menu-open");
+    }
 
-// Клик по бургеру
-burger.addEventListener("click", toggleMenu);
+    function closeMenu() {
+        burger.classList.remove("active");
+        nav.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.classList.remove("menu-open");
+    }
 
-// Клик по затемнению — закрыть
-overlay.addEventListener("click", closeMenu);
+    burger.addEventListener("click", toggleMenu);
+    overlay.addEventListener("click", closeMenu);
 
-// Клик по любой ссылке в меню — закрыть и перейти
-nav.querySelectorAll("a").forEach(function(link) {
-    link.addEventListener("click", closeMenu);
+    nav.querySelectorAll("a").forEach(function(link) {
+        link.addEventListener("click", closeMenu);
+    });
+
 });
