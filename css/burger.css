@@ -56,6 +56,7 @@
         width: 280px;
         height: 100vh;
         background: #1a1a1a;
+        display: flex;
         flex-direction: column;
         align-items: flex-start;
         padding: 80px 32px 32px;
@@ -69,14 +70,7 @@
         right: 0;
     }
 
-    /* Страница не скроллится под меню */
-    body.menu-open {
-        overflow: hidden;
-    }
-
-    /* Ссылки внутри открытого мобильного меню */
-@media (max-width: 768px) {
-    .header__nav.active .header__link {
+    .header__nav .header__link {
         display: block;
         color: #fff;
         font-size: 18px;
@@ -85,5 +79,8 @@
         text-decoration: none;
         letter-spacing: 2px;
     }
-}
+
+    body.menu-open {
+        overflow: hidden;
+    }
 }
