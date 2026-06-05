@@ -269,4 +269,17 @@ form.addEventListener("submit", async (event) => {
         console.error(error);
         alert("Ошибка регистрации. Проверьте JSON Server.");
     }
+
+    // Показать/скрыть пароль
+document.querySelectorAll(".toggle-password").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+        var input = document.getElementById(btn.dataset.target);
+        if (input.type === "password") {
+            input.type = "text";
+            btn.textContent = "🙈";
+        } else {
+            input.type = "password";
+            btn.textContent = "👁";
+        }
+    });
 });
