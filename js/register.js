@@ -66,6 +66,8 @@ document.querySelectorAll('input[name="passwordType"]').forEach(radio => {
             confirmField.value = passwordField.value;
             passwordField.readOnly = true;
             confirmField.readOnly = true;
+            passwordField.type = "text";
+            confirmField.type = "text";
             clearError("passwordError");
             clearError("confirmPasswordError");
         } else {
@@ -73,6 +75,8 @@ document.querySelectorAll('input[name="passwordType"]').forEach(radio => {
             confirmField.readOnly = false;
             passwordField.value = "";
             confirmField.value = "";
+            passwordField.type = "password";
+            confirmField.type = "password";
         }
     });
 });
