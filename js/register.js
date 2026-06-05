@@ -256,7 +256,7 @@ form.addEventListener("submit", async (event) => {
             body: JSON.stringify(user)
         });
 
-        if (response.ok) {
+       if (response.ok) {
             alert("Регистрация успешна!");
             form.reset();
             nicknameAttempts = 0;
@@ -270,7 +270,9 @@ form.addEventListener("submit", async (event) => {
         alert("Ошибка регистрации. Проверьте JSON Server.");
     }
 
-    // Показать/скрыть пароль
+});
+
+// Показать/скрыть пароль — СНАРУЖИ submit, на верхнем уровне
 document.querySelectorAll(".toggle-password").forEach(function(btn) {
     btn.addEventListener("click", function() {
         var input = document.getElementById(btn.dataset.target);
