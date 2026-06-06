@@ -1,4 +1,5 @@
-﻿import I18n from './i18n.js';
+﻿
+import I18n from './i18n.js';
 import ThemeManager from './theme.js';
 import API from './api.js';
 import './burger.js';
@@ -10,7 +11,6 @@ export function showNotification(message, type = 'success') {
     const notif = document.createElement('div');
     notif.className = `notification notification--${type}`;
     notif.innerHTML = `<span class="notification__message">${message}</span>`;
-
     container.appendChild(notif);
 
     setTimeout(() => {
@@ -20,53 +20,25 @@ export function showNotification(message, type = 'success') {
     }, 3000);
 }
 
-function initBurgerMenu() {
-    const burger = document.querySelector('[data-burger]');
-    const menu = document.querySelector('[data-mobile-menu]');
-    const links = menu?.querySelectorAll('a');
+window.showNotification = showNotification;
 
-    if (!burger || !menu) return;
-
-    burger.addEventListener('click', () => {
-        const isExpanded = burger.getAttribute('aria-expanded') === 'true';
-        burger.classList.toggle('active');
-        burger.setAttribute('aria-expanded', !isExpanded);
-        menu.classList.toggle('active');
-        menu.hidden = !menu.classList.contains('active');
-        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
-    });
-
-    // Close on link click
-    links?.forEach(link => {
-        link.addEventListener('click', () => {
-            burger.classList.remove('active');
-            burger.setAttribute('aria-expanded', 'false');
-            menu.classList.remove('active');
-            menu.hidden = true;
-            document.body.style.overflow = '';
-        });
-    });
-
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target) && !burger.contains(e.target) && menu.classList.contains('active')) {
-            burger.classList.remove('active');
-            burger.setAttribute('aria-expanded', 'false');
-            menu.classList.remove('active');
-            menu.hidden = true;
-            document.body.style.overflow = '';
-        }
-    });
+function isHomePage() {
+    return !!(
+        document.querySelector('.hero') ||
+        document.querySelector('.mySwiper') ||
+        document.querySelector('#season-grid')
+    );
 }
 
-// --- Create Product Card HTML ---
 function createProductCard(product) {
-    const lang = I18n.currentLang;
+    const lang = I18n.currentLang || 'ru';
     const name = product.name_i18n?.[lang] || product.name_i18n?.ru || product.name || 'Product';
     const price = product.price ? `${product.price.toLocaleString('ru-RU')} ₽` : '';
-    const badge = product.isNew ? `<span class="product-card__badge product-card__badge--new">${I18n.t('product.new')}</span>` : '';
-    const soldOut = !product.inStock ? `<span class="product-card__badge product-card__badge--sold">${I18n.t('product.soldOut')}</span>` : '';
-    const buttonText = product.inStock ? I18n.t('product.addToCart') : I18n.t('product.outOfStock');
+    const badge = product.isNew ? `<span class="product-card__badge product-card__badge--new">${I18n.t('product.new') || 'NEW'}</span>` : '';
+    const soldOut = !product.inStock ? `<span class="product-card__badge product-card__badge--sold">${I18n.t('product.soldOut') || 'SOLD OUT'}</span>` : '';
+    const buttonText = product.inStock
+        ? (I18n.t('product.addToCart') || 'В корзину')
+        : (I18n.t('product.outOfStock') || 'Нет в наличии');
 
     return `
         <article class="product-card" data-product-id="${product.id}">
@@ -86,20 +58,19 @@ function createProductCard(product) {
     `;
 }
 
-// --- Swiper Slider (Fetched from products) ---
 async function initSlider() {
-    try {
-        // Загружаем продукты с сервера - берём первые 5 для слайдера
-        const products = await API.getProducts({ limit: 5 });
-        const wrapper = document.getElementById('swiper-wrapper');
+    const wrapper = document.getElementById('swiper-wrapper');
+    const swiperEl = document.querySelector('.mySwiper');
 
-        if (!wrapper) {
-            console.warn('Slider wrapper not found');
-            return;
-        }
+    if (!wrapper || !swiperEl) {
+        console.log('ℹ️ Slider not found on this page');
+        return;
+    }
+
+    try {
+        const products = await API.getProducts({ limit: 5 });
 
         if (products.length === 0) {
-            // Fallback слайды если продукты не загрузились
             wrapper.innerHTML = `
                 <div class="swiper-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/assets/images/hero-bg.jpg')">
                     <div class="swiper-slide__content">
@@ -109,11 +80,9 @@ async function initSlider() {
                 </div>
             `;
         } else {
-            // Создаем слайды из продуктов
             wrapper.innerHTML = products.map(product => {
                 const name = product.name_i18n?.ru || product.name || 'Product';
                 const price = product.price ? `${product.price.toLocaleString('ru-RU')} ₽` : '';
-
                 return `
                 <div class="swiper-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${product.image}')">
                     <div class="swiper-slide__content">
@@ -125,132 +94,93 @@ async function initSlider() {
             `}).join('');
         }
 
-        // Инициализируем Swiper после добавления слайдов
         new Swiper(".mySwiper", {
             loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
             effect: 'fade',
-            fadeEffect: {
-                crossFade: true
-            },
-            on: {
-                init: function() {
-                    console.log('✅ Slider initialized');
-                }
-            }
+            fadeEffect: { crossFade: true }
         });
 
+        console.log('✅ Slider initialized');
     } catch (error) {
         console.error('❌ Error loading slider:', error);
-        showNotification('Ошибка загрузки слайдера', 'error');
     }
 }
 
-// --- Load Products for Season Section ---
 async function loadSeasonProducts() {
+    const grid = document.getElementById('season-grid');
+    if (!grid) return;
+
     try {
-        const grid = document.getElementById('season-grid');
-        if (!grid) return;
-
-        // Загружаем часы для секции "Сезон"
         const products = await API.getProducts({ category: 'watches', limit: 3 });
-
         if (products.length === 0) {
             grid.innerHTML = '<p class="empty-state">Продукты не найдены</p>';
             return;
         }
-
         grid.innerHTML = products.map((product, index) => createProductCard(product)).join('');
-
-        // Добавляем анимацию появления
         grid.querySelectorAll('.product-card').forEach((card, i) => {
             card.style.animationDelay = `${0.1 + (i * 0.1)}s`;
         });
-
     } catch (error) {
         console.error('❌ Error loading season products:', error);
-        document.getElementById('season-grid').innerHTML = '<p class="error-state">Ошибка загрузки</p>';
+        grid.innerHTML = '<p class="error-state">Ошибка загрузки</p>';
     }
 }
 
-// --- Load New Arrivals ---
 async function loadNewArrivals() {
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+
     try {
-        const grid = document.getElementById('products-grid');
-        if (!grid) return;
-
-        // Загружаем новинки
         const products = await API.getProducts({ isNew: true, limit: 8 });
-
         if (products.length === 0) {
             grid.innerHTML = '<p class="empty-state">Новинки скоро появятся</p>';
             return;
         }
-
         grid.innerHTML = products.map((product, index) => createProductCard(product)).join('');
-
-        // Добавляем анимацию появления
         grid.querySelectorAll('.product-card').forEach((card, i) => {
             card.style.animationDelay = `${0.1 + (i * 0.1)}s`;
         });
-
     } catch (error) {
         console.error('❌ Error loading new arrivals:', error);
-        document.getElementById('products-grid').innerHTML = '<p class="error-state">Ошибка загрузки</p>';
+        grid.innerHTML = '<p class="error-state">Ошибка загрузки</p>';
     }
 }
 
-// --- Yandex Maps ---
 function initMaps() {
-    // Проверяем, загружен ли API Яндекс.Карт
+    const mapContainer = document.getElementById('yandex-map');
+    if (!mapContainer) return;
+
     if (typeof ymaps === 'undefined') {
-        console.warn('⚠️ Yandex Maps API not loaded - check your API key');
-        // Fallback: показать статичное изображение или сообщение
-        const mapContainer = document.getElementById('yandex-map');
-        if (mapContainer) {
-            mapContainer.innerHTML = `
-                <div class="map-placeholder">
-                    <p>📍 Невский проспект, 10, Санкт-Петербург</p>
-                    <small>Карта загружается...</small>
-                </div>
-            `;
-        }
+        console.warn('⚠️ Yandex Maps API not loaded');
+        mapContainer.innerHTML = `
+            <div class="map-placeholder">
+                <p>📍 Невский проспект, 10, Санкт-Петербург</p>
+                <small>Карта загружается...</small>
+            </div>
+        `;
         return;
     }
 
     ymaps.ready(() => {
-        // Main Map
         const map = new ymaps.Map("yandex-map", {
-            center: [59.9343, 30.3351], // SPb coordinates
+            center: [59.9343, 30.3351],
             zoom: 15,
             controls: ['zoomControl']
         });
 
         const placemark = new ymaps.Placemark([59.9343, 30.3351], {
-            balloonContent: '<strong>PORTEN</strong><br>Невский пр., 10, Санкт-Петербург',
+            balloonContent: '<strong>PORTEN</strong><br>Невский пр., 10',
             hintContent: 'PORTEN'
-        }, {
-            preset: 'islands#brownIcon'
-        });
+        }, { preset: 'islands#brownIcon' });
 
         map.geoObjects.add(placemark);
 
-        // Modal Map Logic
         const modalMapBtn = document.querySelector('[data-modal-open="map-modal"]');
         if (modalMapBtn) {
             modalMapBtn.addEventListener('click', () => {
-                // Инициализируем карту в модалке с небольшой задержкой
                 setTimeout(() => {
                     const modalMap = new ymaps.Map("modal-map", {
                         center: [59.9343, 30.3351],
@@ -266,28 +196,23 @@ function initMaps() {
     });
 }
 
-// --- Smooth Scroll ---
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            // Не обрабатываем ссылки на другие страницы
-            if (this.getAttribute('href').includes('.html')) return;
+            const href = this.getAttribute('href');
+            if (href.includes('.html') || href === '#') return;
 
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
+            const targetId = href.substring(1);
             const targetSection = document.getElementById(targetId);
 
             if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
 }
 
-// --- Scroll Animations (Intersection Observer) ---
 function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -298,41 +223,15 @@ function initScrollAnimations() {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('[data-animate]').forEach(el => {
-        observer.observe(el);
-    });
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 }
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    const cartBtn = document.querySelector('.header__cart');
-
-    if (cartBtn) {
-        cartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            // Определяем текущий путь и формируем правильный путь к корзине
-            const currentPath = window.location.pathname;
-            let cartPath;
-
-            if (currentPath === '/' || currentPath.endsWith('index.html')) {
-                cartPath = 'cart.html';
-            } else {
-                cartPath = 'cart.html';
-            }
-
-            window.location.href = cartPath;
-        });
-
-        // Добавляем стиль курсора для индикации кликабельности
-        cartBtn.style.cursor = 'pointer';
-    }
-});
-// --- Modals ---
 function initModals() {
     const openBtns = document.querySelectorAll('[data-modal-open]');
     const closeBtns = document.querySelectorAll('[data-modal-close]');
     const modals = document.querySelectorAll('.modal');
+
+    if (openBtns.length === 0 && closeBtns.length === 0) return;
 
     openBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -343,12 +242,6 @@ function initModals() {
                 modal.classList.add('active');
                 modal.hidden = false;
                 document.body.classList.add('modal-open');
-
-                // Фокус на первый интерактивный элемент
-                const firstInput = modal.querySelector('input, textarea, button:not([data-modal-close])');
-                if (firstInput) {
-                    setTimeout(() => firstInput.focus(), 300);
-                }
             }
         });
     });
@@ -366,7 +259,6 @@ function initModals() {
         });
     });
 
-    // Close on backdrop click
     modals.forEach(modal => {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
@@ -379,7 +271,6 @@ function initModals() {
         });
     });
 
-    // Close on Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             document.querySelectorAll('.modal.active').forEach(modal => {
@@ -393,61 +284,67 @@ function initModals() {
     });
 }
 
-// --- Cart Counter Animation ---
-function updateCartCount(count) {
-    const counter = document.querySelector('.header__cart-count');
-    if (!counter) return;
-
-    // Анимация обновления счётчика
-    counter.style.transform = 'scale(1.3)';
-    counter.style.color = 'var(--color-primary)';
-    counter.textContent = count;
-
-    setTimeout(() => {
-        counter.style.transform = 'scale(1)';
-        counter.style.color = '';
-    }, 300);
+function updateCartCount() {
+    try {
+        const cartData = JSON.parse(localStorage.getItem('porten_cart') || '[]');
+        const count = cartData.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        const counter = document.querySelector('.header__cart-count');
+        if (counter) counter.textContent = count;
+    } catch (e) {
+        console.warn('⚠️ Error reading cart count');
+    }
 }
 
-// --- Main Init ---
 document.addEventListener('DOMContentLoaded', async () => {
-    // Инициализация модулей
+    console.log('🚀 Main script initialized');
+    console.log('📍 Current page:', window.location.pathname);
+
+    // 1. Базовая инициализация (на всех страницах)
     I18n.init();
     ThemeManager.init();
+    initSmoothScroll();
+    initScrollAnimations();
+    initModals();
+    updateCartCount();
 
-    // Hide Preloader
+    // 2. Скрытие прелоадера
     const preloader = document.querySelector('.preloader');
     if (preloader) {
         setTimeout(() => {
             preloader.classList.add('hidden');
-            setTimeout(() => preloader.style.display = 'none', 500);
+            setTimeout(() => { preloader.style.display = 'none'; }, 500);
         }, 800);
     }
 
-    // Инициализация интерактивных элементов
-    initBurgerMenu();
-    initSmoothScroll();
-    initScrollAnimations();
-    initModals();
+    // 3. Специфичный для главной страницы функционал
+    if (isHomePage()) {
+        console.log('🏠 Home page detected - loading dynamic content');
 
-    // Загрузка динамического контента с сервера
-    try {
-        await Promise.all([
-            initSlider(),
-            loadSeasonProducts(),
-            loadNewArrivals()
-        ]);
-        console.log('✅ All dynamic content loaded');
-    } catch (error) {
-        console.error('❌ Error loading content:', error);
-        showNotification('Не удалось загрузить контент', 'error');
+        try {
+            await Promise.all([
+                initSlider(),
+                loadSeasonProducts(),
+                loadNewArrivals()
+            ]);
+            console.log('✅ All dynamic content loaded');
+        } catch (error) {
+            console.error('❌ Error loading content:', error);
+        }
+
+        initMaps();
+
+        // Приветственное уведомление (только на главной)
+        setTimeout(() => {
+            showNotification('Добро пожаловать в PORTEN!', 'info');
+        }, 1500);
+    } else {
+        console.log('ℹ️ Not home page - skipping home-specific init');
     }
 
-    // Инициализация карт (может быть асинхронной)
-    initMaps();
-
-    // Приветственное уведомление
-    setTimeout(() => {
-        showNotification('Добро пожаловать в PORTEN!', 'info');
-    }, 1500);
+    console.log('✅ Main initialization complete');
 });
+
+window.I18n = I18n;
+window.ThemeManager = ThemeManager;
+window.updateCartCount = updateCartCount;
+window.createProductCard = createProductCard;

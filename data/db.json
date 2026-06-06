@@ -182,6 +182,44 @@
       "status": "confirmed",
       "updatedAt": "2026-06-06T10:48:22.897Z",
       "id": 1780741296520
+    },
+    {
+      "id": 1780754069983,
+      "userId": 2,
+      "userEmail": "gapizadaum@mail.com",
+      "userName": "Saprano Piochiny",
+      "items": [
+        {
+          "productId": 1,
+          "productName": "Louis XVI ATHOS",
+          "price": 165000,
+          "quantity": 2,
+          "subtotal": 330000,
+          "image": "assets/images/watches/watch-1.jpg"
+        },
+        {
+          "productId": 2,
+          "productName": "Montblanc Heritage",
+          "price": 245000,
+          "quantity": 2,
+          "subtotal": 490000,
+          "image": "assets/images/watches/watch-2.jpg"
+        },
+        {
+          "productId": 3,
+          "productName": "Tissot PRX Powermatic",
+          "price": 89000,
+          "quantity": 2,
+          "subtotal": 178000,
+          "image": "assets/images/watches/watch-3.jpg"
+        }
+      ],
+      "subtotal": 998000,
+      "delivery": 500,
+      "total": 998500,
+      "status": "pending",
+      "createdAt": "2026-06-06T13:54:29.983Z",
+      "updatedAt": "2026-06-06T13:54:29.984Z"
     }
   ]
 }
