@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог PORTEN</title>
+    <title data-i18n="catalog.meta.title">Каталог — PORTEN</title>
+    <meta name="description" data-i18n="catalog.meta.description" content="Каталог премиум аксессуаров: часы, ремни, кошельки.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
@@ -11,115 +17,99 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/adaptive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/catalog.css">
+
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <meta name="theme-color" content="#1a1a1a">
 </head>
 <body>
 
-<header class="header">
+<div class="preloader" data-preloader>
+    <div class="preloader__spinner"></div>
+    <div class="preloader__text" data-i18n="common.loading">Загрузка...</div>
+</div>
+
+<div id="notifications-container"></div>
+
+<header class="header" data-header>
     <div class="container header__container">
         <a href="index.html" class="header__logo">
             <span class="header__logo-text">PORTEN</span>
         </a>
+        <nav class="header__nav">
+            <a href="index.html" class="header__link" data-i18n="header.home">Главная</a>
+            <a href="catalog.html" class="header__link active" data-i18n="header.catalog">Каталог</a>
+            <a href="cart.html" class="header__link" data-i18n="header.cart">Корзина</a>
+        </nav>
+        <div class="header__right">
+            <a href="cart.html" class="header__cart" aria-label="Корзина" data-i18n-aria="header.cart">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-1.87.18-1.87-.72V8c0-.9.64-1.63 1.54-1.63h.38M10 17a2 2 0 100-4 2 2 0 000 4zm6 0a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <span class="header__cart-count" id="headerCartCount">0</span>
+            </a>
+            <button class="header__favorites" aria-label="Избранное" data-i18n-aria="header.favorites">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 2.5l1.903 3.854a1 1 0 00.754.547l4.243.616-3.07 3.003a1 1 0 00-.288.884l.724 4.226L10 13.5l-3.766 1.98.724-4.226a1 1 0 00-.288-.884l-3.07-3.003 4.243-.616a1 1 0 00.754-.547L10 2.5z" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <span class="header__cart-count" id="headerFavoritesCount">0</span>
+            </button>
+        </div>
     </div>
 </header>
 
-<main class="new-arrivals">
-    <div class="container">
+<main id="main-content">
+    <section class="catalog" data-catalog>
+        <div class="container">
+            <h1 class="section-title" data-i18n="catalog.title">КАТАЛОГ ТОВАРОВ</h1>
 
-        <h1 class="section-title">КАТАЛОГ ТОВАРОВ</h1>
+            <div class="catalog-controls">
+                <input type="text" id="searchInput" class="form-input" data-i18n-placeholder="catalog.searchPlaceholder" placeholder="Поиск по названию или описанию...">
 
-        <!-- ЭТАП 3: Поиск -->
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Поиск по названию или описанию..."
-            class="newsletter-form__input"
-            style="margin-bottom: 16px;"
-        >
+                <select id="sortSelect" class="form-select">
+                    <option value="" data-i18n="catalog.sortDefault">— Сортировка —</option>
+                    <option value="price" data-i18n="catalog.sortPrice">По цене</option>
+                    <option value="title" data-i18n="catalog.sortTitle">По названию</option>
+                    <option value="rating" data-i18n="catalog.sortRating">По рейтингу</option>
+                </select>
 
-        <!-- ЭТАП 3: Сортировка -->
-        <select id="sortSelect" class="newsletter-form__input" style="margin-bottom: 16px;">
-            <option value="">— Сортировка —</option>
-            <option value="price">По цене</option>
-            <option value="title">По названию</option>
-            <option value="rating">По рейтингу</option>
-        </select>
+                <div class="category-filters">
+                    <button class="btn btn--outline category-btn active" data-category="all" data-i18n="catalog.all">Все</button>
+                    <button class="btn btn--outline category-btn" data-category="watches" data-i18n="category.watches">Часы</button>
+                    <button class="btn btn--outline category-btn" data-category="belts" data-i18n="category.belts">Ремни</button>
+                    <button class="btn btn--outline category-btn" data-category="wallets" data-i18n="category.wallets">Кошельки</button>
+                </div>
+            </div>
 
-        <!-- ЭТАП 3: Фильтр по категориям -->
-        <div style="margin-bottom: 16px;">
-            <button class="btn btn--outline category-btn" data-category="all">Все</button>
-            <button class="btn btn--outline category-btn" data-category="watches">Часы</button>
-            <button class="btn btn--outline category-btn" data-category="belts">Ремни</button>
-            <button class="btn btn--outline category-btn" data-category="wallets">Кошельки</button>
+            <div class="array-methods">
+                <button class="btn btn--outline action-btn" data-action="cheap" data-i18n="catalog.cheap">до 100 000 ₽</button>
+                <button class="btn btn--outline action-btn" data-action="expensive" data-i18n="catalog.expensive">от 100 000 ₽</button>
+                <button class="btn btn--outline action-btn" data-action="new" data-i18n="catalog.new">новинки</button>
+                <button class="btn btn--outline action-btn" data-action="alphabet" data-i18n="catalog.alphabet">по алфавиту</button>
+                <button class="btn btn--outline action-btn" data-action="reverse" data-i18n="catalog.reverse">обратный порядок</button>
+                <button class="btn btn--outline action-btn" data-action="firstFive" data-i18n="catalog.firstFive">первые 5</button>
+                <button class="btn btn--outline action-btn" data-action="lastFive" data-i18n="catalog.lastFive">последние 5</button>
+                <button class="btn btn--outline action-btn" data-action="mostExpensive" data-i18n="catalog.mostExpensive">самый дорогой</button>
+                <button class="btn btn--outline action-btn" data-action="inStock" data-i18n="catalog.inStock">в наличии</button>
+                <button class="btn btn--outline action-btn" data-action="discount" data-i18n="catalog.discount">скидка 10%</button>
+                <button class="btn btn--primary action-btn" data-action="all" data-i18n="catalog.reset">Сбросить</button>
+            </div>
+
+            <div id="productsContainer" class="products-grid"></div>
+            <p id="notFound" class="empty-state" data-i18n="catalog.notFound" style="display:none">Товары не найдены</p>
         </div>
-
-        <!-- ЭТАП 2: 10 кнопок с методами массивов -->
-        <div style="margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 8px;">
-
-            <!-- 1. filter -->
-            <button class="btn btn--outline action-btn" data-action="cheap">
-                filter: до 100 000 ₽
-            </button>
-
-            <!-- 2. reduce -->
-            <button class="btn btn--outline action-btn" data-action="expensive">
-                reduce: от 100 000 ₽
-            </button>
-
-            <!-- 3. filter + map -->
-            <button class="btn btn--outline action-btn" data-action="new">
-                filter+map: новинки
-            </button>
-
-            <!-- 4. sort -->
-            <button class="btn btn--outline action-btn" data-action="alphabet">
-                sort: по алфавиту
-            </button>
-
-            <!-- 5. reverse -->
-            <button class="btn btn--outline action-btn" data-action="reverse">
-                reverse: обратный порядок
-            </button>
-
-            <!-- 6. slice (первые 5) -->
-            <button class="btn btn--outline action-btn" data-action="firstFive">
-                slice: первые 5
-            </button>
-
-            <!-- 7. slice (последние 5) -->
-            <button class="btn btn--outline action-btn" data-action="lastFive">
-                slice: последние 5
-            </button>
-
-            <!-- 8. reduce (max) -->
-            <button class="btn btn--outline action-btn" data-action="mostExpensive">
-                reduce: самый дорогой
-            </button>
-
-            <!-- 9. every + some -->
-            <button class="btn btn--outline action-btn" data-action="inStock">
-                every/some: в наличии
-            </button>
-
-            <!-- 10. map (скидка) -->
-            <button class="btn btn--outline action-btn" data-action="discount">
-                map: скидка 10%
-            </button>
-
-            <button class="btn btn--primary action-btn" data-action="all">
-                Сбросить
-            </button>
-        </div>
-
-        <!-- Контейнер для карточек (пустой в HTML — заполняется JS) -->
-        <div id="productsContainer" class="products-grid"></div>
-
-        <p id="notFound" style="display:none; color:white; margin-top:20px;">
-            Товары не найдены
-        </p>
-
-    </div>
+    </section>
 </main>
 
-<script src="js/catalog.js"></script>
+<footer class="footer" data-footer>
+    <div class="container">
+        <p data-i18n="footer.copyright">© 2025 PORTEN. Все права защищены.</p>
+    </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/catalog.js"></script>
+
 </body>
 </html>

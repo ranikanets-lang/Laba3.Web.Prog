@@ -1,0 +1,247 @@
+/* ===== PARALLAX SECTION ===== */
+.parallax-section {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+
+.parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    will-change: transform;
+}
+
+.parallax-layer--bg {
+    z-index: 1;
+}
+
+.parallax-layer--bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.3);
+}
+
+.parallax-layer--middle {
+    z-index: 2;
+    top: -10%;
+}
+
+.parallax-layer--middle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+}
+
+.parallax-layer--foreground {
+    z-index: 3;
+    top: -20%;
+}
+
+.parallax-layer--foreground img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+}
+
+.parallax-layer--reverse {
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -5%;
+}
+
+.parallax-content {
+    text-align: center;
+    color: #fff;
+    padding: var(--spacing-xl);
+    max-width: 800px;
+}
+
+.parallax-content h2 {
+    font-family: var(--font-serif);
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-md);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.parallax-content p {
+    font-size: var(--font-size-xl);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .parallax-section {
+        height: 500px;
+    }
+
+    .parallax-content h2 {
+        font-size: var(--font-size-3xl);
+    }
+
+    .parallax-content p {
+        font-size: var(--font-size-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .parallax-section {
+        height: 400px;
+    }
+
+    .parallax-layer {
+        height: 130%;
+    }
+
+    .parallax-content h2 {
+        font-size: var(--font-size-2xl);
+    }
+
+    .parallax-content p {
+        font-size: var(--font-size-base);
+    }
+}
+
+@media (max-width: 480px) {
+    .parallax-section {
+        height: 350px;
+    }
+
+    .parallax-content h2 {
+        font-size: var(--font-size-xl);
+    }
+
+    .parallax-content p {
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* Disable parallax on mobile for performance */
+@media (max-width: 768px) {
+    .parallax-layer {
+        transform: none !important;
+    }
+}
+
+
+/* Плавные переходы для галереи */
+.gallery-main-image {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.gallery-main-image.fade-out {
+    opacity: 0;
+    transform: scale(1.02);
+}
+
+.gallery-main-image.fade-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Индикатор плеера */
+.gallery-player-indicator {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-player-indicator.active {
+    opacity: 1;
+}
+
+.player-indicator__icon {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+/* 🔥 Критически важные стили для parallax */
+.parallax-section {
+    position: relative;
+    height: 600px; /* 🔥 Обязательная высота */
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+
+.parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%; /* 🔥 Больше чем 100% для эффекта */
+    will-change: transform; /* 🔥 Оптимизация производительности */
+    pointer-events: none; /* 🔥 Чтобы не мешал кликам */
+}
+
+.parallax-layer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.parallax-layer--bg {
+    z-index: 1;
+}
+
+.parallax-layer--bg img {
+    filter: brightness(0.3);
+}
+
+.parallax-layer--middle {
+    z-index: 2;
+    top: -10%;
+}
+
+.parallax-layer--middle img {
+    opacity: 0.6;
+}
+
+.parallax-layer--foreground {
+    z-index: 3;
+    top: -20%;
+}
+
+.parallax-layer--foreground img {
+    opacity: 0.4;
+}
+
+.parallax-layer--reverse {
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -5%;
+}
+
+.parallax-content {
+    text-align: center;
+    color: #fff;
+    padding: var(--spacing-xl);
+    max-width: 800px;
+    z-index: 5; /* 🔥 Контент поверх всего */
+    position: relative;
+}
+
+/* 🔥 Отключение parallax на мобильных для производительности */
+@media (max-width: 768px) {
+    .parallax-section {
+        height: 400px;
+    }
+
+    .parallax-layer {
+        transform: none !important;
+        height: 100%;
+    }
+}

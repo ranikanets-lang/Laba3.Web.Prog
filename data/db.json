@@ -153,19 +153,35 @@
       "reviews": 19
     }
   ],
-
   "users": [
-  {
-    "id": 1,
-    "firstName": "Admin",
-    "lastName": "User",
-    "nickname": "Admin001",
-    "email": "admin@mail.com",
-    "password": "Admin123!",
-    "role": "admin"
-  }
-  ]
+    {
+      "id": 1,
+      "firstName": "Admin",
+      "lastName": "User",
+      "nickname": "Admin001",
+      "email": "admin@mail.com",
+      "password": "Admin123!",
+      "role": "admin"
+    },
+    {
+      "firstName": "Saprano",
+      "lastName": "Piochiny",
+      "middleName": "",
+      "nickname": "SapP729_vip",
+      "email": "gapizadaum@mail.com",
+      "phone": "+375298291068",
+      "birthDate": "2000-02-11",
+      "password": "123456Aa!",
+      "role": "customer",
+      "id": 2
+    }
+  ],
   "feedback": [],
-
-  "orders": []
+  "orders": [
+    {
+      "status": "confirmed",
+      "updatedAt": "2026-06-06T10:48:22.897Z",
+      "id": 1780741296520
+    }
+  ]
 }

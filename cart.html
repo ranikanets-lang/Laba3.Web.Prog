@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="cart.meta.title">Корзина — PORTEN</title>
+    <meta name="description" data-i18n="cart.meta.description" content="Ваша корзина покупок.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/adaptive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/cart.css">
+
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <meta name="theme-color" content="#1a1a1a">
+</head>
+<body>
+
+<div class="preloader" data-preloader>
+    <div class="preloader__spinner"></div>
+    <div class="preloader__text" data-i18n="common.loading">Загрузка...</div>
+</div>
+
+<div id="notifications-container"></div>
+
+<header class="header" data-header>
+    <div class="container header__container">
+        <a href="index.html" class="header__logo">
+            <span class="header__logo-text">PORTEN</span>
+        </a>
+        <nav class="header__nav">
+            <a href="index.html" class="header__link" data-i18n="header.home">Главная</a>
+            <a href="catalog.html" class="header__link" data-i18n="header.catalog">Каталог</a>
+            <a href="cart.html" class="header__link active" data-i18n="header.cart">Корзина</a>
+            <a href="orders.html" class="header__link" data-i18n="header.orders">Заказы</a>
+        </nav>
+        <div class="header__right">
+            <a href="cart.html" class="header__cart" aria-label="Корзина" data-i18n-aria="header.cart">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-1.87.18-1.87-.72V8c0-.9.64-1.63 1.54-1.63h.38M10 17a2 2 0 100-4 2 2 0 000 4zm6 0a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <span class="header__cart-count" id="headerCartCount">0</span>
+            </a>
+            <button class="header__favorites" aria-label="Избранное" data-i18n-aria="header.favorites">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 2.5l1.903 3.854a1 1 0 00.754.547l4.243.616-3.07 3.003a1 1 0 00-.288.884l.724 4.226L10 13.5l-3.766 1.98.724-4.226a1 1 0 00-.288-.884l-3.07-3.003 4.243-.616a1 1 0 00.754-.547L10 2.5z" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <span class="header__cart-count" id="headerFavoritesCount">0</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main id="main-content">
+    <section class="cart" data-cart>
+        <div class="container">
+            <h1 class="section-title" data-i18n="cart.title">ВАША КОРЗИНА</h1>
+
+            <div id="cartEmpty" class="cart-empty" style="display:none">
+                <svg width="80" height="80" viewBox="0 0 20 20" fill="none">
+                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-1.87.18-1.87-.72V8c0-.9.64-1.63 1.54-1.63h.38M10 17a2 2 0 100-4 2 2 0 000 4zm6 0a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <p data-i18n="cart.empty">Корзина пуста</p>
+                <a href="catalog.html" class="btn btn--primary" data-i18n="cart.continueShopping">Продолжить покупки</a>
+            </div>
+
+            <div id="cartContent" class="cart-content" style="display:none">
+                <div class="cart-items" id="cartItems"></div>
+
+                <div class="cart-summary">
+                    <div class="cart-summary__row">
+                        <span data-i18n="cart.subtotal">Промежуточный итог</span>
+                        <span id="cartSubtotal">0 ₽</span>
+                    </div>
+                    <div class="cart-summary__row">
+                        <span data-i18n="cart.delivery">Доставка</span>
+                        <span id="cartDelivery">500 ₽</span>
+                    </div>
+                    <div class="cart-summary__row cart-summary__total">
+                        <span data-i18n="cart.total">Итого</span>
+                        <span id="cartTotal">0 ₽</span>
+                    </div>
+                    <button id="checkoutBtn" class="btn btn--primary btn--full" data-i18n="cart.checkout">Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer" data-footer>
+    <div class="container">
+        <p data-i18n="footer.copyright">© 2025 PORTEN. Все права защищены.</p>
+    </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/cart.js"></script>
+
+</body>
+</html>

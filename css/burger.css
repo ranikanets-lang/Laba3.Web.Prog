@@ -1,92 +1,184 @@
-/* Бургер-кнопка */
-.burger {
-    display: none;
+.burger-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 10000; /* 🔥 Повышаем */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Не кликабельно по умолчанию */
+    transition: all 0.3s ease;
+}
+
+.burger-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Кликабельно когда активно */
+}
+
+/* Mobile menu — МАКСИМАЛЬНЫЙ z-index */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--bg-secondary);
+    z-index: 10001; /* 🔥 Ещё выше чем оверлей */
+    padding: var(--spacing-xl);
+    display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform; /* Оптимизация анимации */
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+/* Важно: hidden не должен влиять на анимацию */
+.mobile-menu[hidden] {
+    display: flex !important; /* Сохраняем flex для анимации */
+    visibility: hidden;       /* Скрываем визуально */
+    opacity: 0;               /* Прозрачность */
+    pointer-events: none;     /* Не кликабельно */
+    transform: translateX(-100%) !important; /* Гарантируем начальную позицию */
+}
+
+.mobile-menu.active[hidden] {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    /* transform управляется через .active */
+}
+
+.mobile-menu[hidden] {
+    display: none;
+}
+
+.mobile-menu__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
+}
+
+.mobile-menu__link {
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: color 0.2s ease;
+}
+
+.mobile-menu__link:hover {
+    color: var(--color-primary);
+}
+
+.mobile-menu__footer {
+    margin-top: auto;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.mobile-menu__phone {
+    font-size: var(--font-size-lg);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Burger button animation */
+.burger {
+    display: none; /* Show only on mobile via media query */
+    flex-direction: column;
+    gap: 5px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
-    z-index: 1001;
+    padding: var(--spacing-xs);
+    z-index: 1000;
 }
 
 .burger span {
     display: block;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    transition: transform 0.3s, opacity 0.3s;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Анимация крестика при открытии */
+/* Burger animation when active */
 .burger.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
+    transform: rotate(45deg) translate(6px, 6px);
 }
+
 .burger.active span:nth-child(2) {
     opacity: 0;
+    transform: translateX(-10px);
 }
+
 .burger.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* Затемнение фона */
-.overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 999;
-}
-.overlay.active {
-    display: block;
+/* Block scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
 }
 
-/* Мобильное меню */
+/* Show burger on mobile */
 @media (max-width: 768px) {
     .burger {
         display: flex;
     }
 
     .header__nav {
-        position: fixed;
-        top: 0;
-        right: -280px;
-        width: 280px;
-        height: 100vh;
-        background: #1a1a1a;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 80px 32px 32px;
-        gap: 24px;
-        z-index: 1000;
-        transition: right 0.3s ease;
-        overflow-y: auto;
-    }
-
-    .header__nav.active {
-        right: 0;
-    }
-
-    .header__nav .header__link {
-        display: block;
-        color: #fff;
-        font-size: 18px;
-        padding: 12px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        text-decoration: none;
-        letter-spacing: 2px;
-    }
-
-    body.menu-open {
-        overflow: hidden;
-    }
-    @media (max-width: 768px) {
-    .header__nav.active {
-        display: flex !important;
-        right: 0 !important;
+        display: none; /* Hide desktop nav on mobile */
     }
 }
+
+.mobile-menu__close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Полоски крестика */
+.mobile-menu__close span {
+    position: absolute;
+    width: 26px;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu__close span:nth-child(1) { transform: rotate(45deg); }
+.mobile-menu__close span:nth-child(2) { transform: rotate(-45deg); }
+
+/* Эффект при наведении */
+.mobile-menu__close:hover span {
+    background-color: var(--color-primary);
+    transform: scale(1.1) rotate(45deg);
+}
+.mobile-menu__close:hover span:nth-child(2) {
+    transform: scale(1.1) rotate(-45deg);
 }

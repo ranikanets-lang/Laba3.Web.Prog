@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="orders.meta.title">Мои заказы — PORTEN</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/adaptive.css">
+    <link rel="stylesheet" href="css/orders.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+</head>
+<body>
+<header class="header" data-header>
+    <div class="container header__container">
+        <a href="index.html" class="header__logo">
+            <span class="header__logo-text">PORTEN</span>
+        </a>
+        <nav class="header__nav">
+            <a href="index.html" class="header__link" data-i18n="header.home">Главная</a>
+            <a href="catalog.html" class="header__link" data-i18n="header.catalog">Каталог</a>
+            <a href="cart.html" class="header__link" data-i18n="header.cart">Корзина</a>
+            <a href="orders.html" class="header__link active" data-i18n="header.orders">Заказы</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+    <section class="orders-section">
+        <div class="container">
+            <h1 class="section-title" data-i18n="orders.title">МОИ ЗАКАЗЫ</h1>
+
+            <div id="ordersAuth" style="display:none">
+                <p data-i18n="orders.authRequired">Войдите для просмотра заказов</p>
+                <a href="login.html" class="btn btn--primary" data-i18n="orders.login">Войти</a>
+            </div>
+
+            <div id="ordersList" class="orders-list"></div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer" data-footer>
+    <div class="container">
+        <p data-i18n="footer.copyright">© 2025 PORTEN. Все права защищены.</p>
+    </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/orders.js"></script>
+</body>
+</html>

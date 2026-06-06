@@ -1,0 +1,465 @@
+.register-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.register-card {
+    width: 100%;
+    max-width: 520px;
+    background: var(--bg-card);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-2xl);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.register-card__header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.register-card__title {
+    font-family: var(--font-serif);
+    font-size: var(--font-size-3xl);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.register-card__subtitle {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.form-group--row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.form-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.form-label .required {
+    color: #ef4444;
+}
+
+.form-input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.form-input::placeholder {
+    color: var(--text-muted);
+}
+
+.form-input:read-only {
+    background: var(--bg-tertiary);
+    cursor: not-allowed;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper .form-input {
+    padding-right: 48px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: var(--spacing-sm);
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-xs);
+    transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+    color: var(--color-primary);
+}
+
+.password-options {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-sm);
+    background: var(--bg-tertiary);
+    border-radius: var(--border-radius-md);
+}
+
+.password-options label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.password-options input[type="radio"] {
+    accent-color: var(--color-primary);
+}
+
+.form-hint {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.form-error {
+    font-size: var(--font-size-xs);
+    color: #ef4444;
+    min-height: 1.2em;
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+.form-success {
+    font-size: var(--font-size-xs);
+    color: #10b981;
+}
+
+.btn--submit {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--color-primary);
+    color: #000;
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: var(--spacing-sm);
+}
+
+.btn--submit:hover:not(:disabled) {
+    background: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.btn--submit:disabled {
+    background: var(--text-muted);
+    color: var(--bg-secondary);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.form-footer a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color 0.2s ease;
+}
+
+.form-footer a:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
+
+.agreement {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.agreement input {
+    margin-top: 4px;
+    accent-color: var(--color-primary);
+}
+
+.agreement a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.agreement a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .register-card {
+        padding: var(--spacing-lg);
+    }
+
+    .register-card__title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .form-group--row {
+        grid-template-columns: 1fr;
+    }
+
+    .password-options {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .register-card,
+    .form-error,
+    .btn--submit {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
+/* Улучшенные стили для чекбоксов */
+.agreement {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-md);
+    transition: background-color 0.2s ease;
+}
+
+.agreement:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.agreement input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--bg-primary);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agreement input[type="checkbox"]:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.agreement input[type="checkbox"]:checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.agreement input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 12px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    animation: checkmark 0.2s ease;
+}
+
+@keyframes checkmark {
+    0% {
+        transform: rotate(45deg) scale(0);
+    }
+    50% {
+        transform: rotate(45deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(45deg) scale(1);
+    }
+}
+
+.agreement input[type="checkbox"]:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+
+.agreement input[type="checkbox"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.agreement a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.agreement a:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
+
+/* Стили для радио-кнопок (способ создания пароля) */
+.password-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background: var(--bg-tertiary);
+    border-radius: var(--border-radius-md);
+}
+
+.password-options label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+}
+
+.password-options label:hover {
+    background-color: var(--bg-secondary);
+}
+
+.password-options input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    background-color: var(--bg-primary);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.password-options input[type="radio"]:hover {
+    border-color: var(--color-primary);
+}
+
+.password-options input[type="radio"]:checked {
+    border-color: var(--color-primary);
+    border-width: 6px;
+}
+
+.password-options input[type="radio"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .agreement {
+        gap: var(--spacing-sm);
+        padding: var(--spacing-xs);
+    }
+
+    .agreement input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+    }
+}
+
+/* Состояние ошибки для полей ввода */
+.form-input--error {
+    border-color: #ef4444 !important;
+    background-color: rgba(239, 68, 68, 0.05);
+    animation: shake 0.3s ease;
+}
+
+.form-input--error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+/* Визуальный индикатор для радио/чекбоксов с ошибкой */
+.password-options:has(input[type="radio"]:invalid),
+.agreement:has(input[type="checkbox"]:invalid) {
+    border: 1px solid #ef4444;
+}
+
+/* Анимация появления ошибки */
+.form-error {
+    font-size: var(--font-size-xs);
+    color: #ef4444;
+    min-height: 1.2em;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.form-error[style*="display: block"] {
+    opacity: 1;
+    transform: translateY(0);
+}

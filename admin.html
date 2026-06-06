@@ -1,41 +1,313 @@
-<!DOCTYPE html><html lang="ru">
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Panel</title><link rel="stylesheet" href="css/variables.css">
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/adaptive.css">
-<link rel="stylesheet" href="css/animations.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="admin.meta.title">Панель администратора — PORTEN</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/adaptive.css">
+    <link rel="stylesheet" href="css/animations.css">
+
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <meta name="theme-color" content="#1a1a1a">
 </head>
-<body><h1>Admin Panel</h1><h2>Add Product</h2><form id="productForm"><input
-    type="text"
-    id="title"
-    placeholder="Product Name"
-    required
->
+<body>
 
-<input
-    type="number"
-    id="price"
-    placeholder="Price"
-    required
->
+<!-- Прелоадер -->
+<div class="preloader" data-preloader>
+    <div class="preloader__spinner"></div>
+    <div class="preloader__text" data-i18n="common.loading">Загрузка...</div>
+</div>
 
-<input
-    type="text"
-    id="category"
-    placeholder="Category"
-    required
->
+<!-- Уведомления -->
+<div id="notifications-container"></div>
 
-<button type="submit">
-    Add Product
-</button>
+<!-- Шапка админ-панели -->
+<header class="header header--admin" data-header>
+    <div class="container header__container">
+        <a href="index.html" class="header__logo">
+            <span class="header__logo-text">PORTEN <span class="header__badge" data-i18n="admin.badge">ADMIN</span></span>
+        </a>
+        <div class="header__actions">
+            <span class="header__admin-info" id="adminInfo" data-i18n="admin.welcome">Admin</span>
+            <button class="btn btn--outline btn--sm" id="logoutBtn" data-i18n="admin.logout">Выйти</button>
+        </div>
+    </div>
+</header>
 
-</form><hr><h2>Products</h2><div id="productsList"></div><hr>
-  
-  <h2>Feedback</h2><div id="feedbackList"></div></body><script src="js/admin.js"></script></html>
+<main id="main-content">
+    <div class="admin-container">
+        <!-- Боковое меню -->
+        <aside class="admin-sidebar">
+            <nav class="admin-nav">
+                <button class="admin-nav__item active" data-tab="products">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M4 4h12v12H4V4zm2 2v8h8V6H6z" fill="currentColor"/>
+                        <path d="M8 8h4v2H8V8z" fill="currentColor"/>
+                    </svg>
+                    <span data-i18n="admin.products">Товары</span>
+                </button>
+                <button class="admin-nav__item" data-tab="orders">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm0 2h8v2H6V4zm0 4h8v2H6V8zm0 4h8v2H6v-2z" fill="currentColor"/>
+                    </svg>
+                    <span data-i18n="admin.orders">Заказы</span>
+                </button>
+                <button class="admin-nav__item" data-tab="users">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M10 2a4 4 0 100 8 4 4 0 000-8zm0 10c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z" fill="currentColor"/>
+                    </svg>
+                    <span data-i18n="admin.users">Пользователи</span>
+                </button>
+                <button class="admin-nav__item" data-tab="reviews">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" fill="currentColor"/>
+                    </svg>
+                    <span data-i18n="admin.reviews">Отзывы</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Контент панели -->
+        <div class="admin-content">
+            <!-- Секция товаров -->
+            <section class="admin-panel active" id="productsPanel" data-panel="products">
+                <div class="admin-panel__header">
+                    <h1 class="admin-panel__title" data-i18n="admin.productsTitle">Управление товарами</h1>
+                    <p class="admin-panel__subtitle" data-i18n="admin.productsSubtitle">Добавление, редактирование и удаление товаров каталога</p>
+                </div>
+
+                <div class="admin-toolbar">
+                    <button class="btn btn--primary" id="addProductBtn" data-modal-trigger="productModal">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span data-i18n="admin.addProduct">Добавить товар</span>
+                    </button>
+                    <div class="admin-search">
+                        <input type="search" id="productSearch" class="form-input"
+                               data-i18n-placeholder="admin.searchPlaceholder"
+                               placeholder="Поиск товаров..."
+                               aria-label="Поиск товаров">
+                    </div>
+                </div>
+
+                <div class="products-table-container">
+                    <table class="products-table" aria-label="Список товаров">
+                        <thead>
+                        <tr>
+                            <th data-i18n="admin.table.image">Фото</th>
+                            <th data-i18n="admin.table.name">Название</th>
+                            <th data-i18n="admin.table.category">Категория</th>
+                            <th data-i18n="admin.table.price">Цена</th>
+                            <th data-i18n="admin.table.stock">Наличие</th>
+                            <th data-i18n="admin.table.actions">Действия</th>
+                        </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                        <!-- Данные загружаются через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Секция заказов -->
+            <section class="admin-panel" id="ordersPanel" data-panel="orders">
+                <div class="admin-panel__header">
+                    <h1 class="admin-panel__title" data-i18n="admin.ordersTitle">Заказы</h1>
+                    <p class="admin-panel__subtitle" data-i18n="admin.ordersSubtitle">Управление заказами клиентов</p>
+                </div>
+
+                <div class="admin-toolbar">
+                    <div class="admin-search">
+                        <input type="search" id="orderSearch" class="form-input"
+                               data-i18n-placeholder="admin.searchPlaceholder"
+                               placeholder="Поиск заказов..."
+                               aria-label="Поиск заказов">
+                    </div>
+                    <select id="orderStatusFilter" class="form-select">
+                        <option value="all" data-i18n="admin.allStatuses">Все статусы</option>
+                        <option value="pending" data-i18n="order.status.pending">В обработке</option>
+                        <option value="confirmed" data-i18n="order.status.confirmed">Подтверждён</option>
+                        <option value="shipped" data-i18n="order.status.shipped">Отправлен</option>
+                        <option value="delivered" data-i18n="order.status.delivered">Доставлен</option>
+                        <option value="cancelled" data-i18n="order.status.cancelled">Отменён</option>
+                    </select>
+                </div>
+
+                <div class="orders-table-container">
+                    <table class="orders-table" aria-label="Список заказов">
+                        <thead>
+                        <tr>
+                            <th data-i18n="admin.table.orderId">№ Заказа</th>
+                            <th data-i18n="admin.table.customer">Клиент</th>
+                            <th data-i18n="admin.table.date">Дата</th>
+                            <th data-i18n="admin.table.total">Сумма</th>
+                            <th data-i18n="admin.table.status">Статус</th>
+                            <th data-i18n="admin.table.actions">Действия</th>
+                        </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                        <!-- Данные загружаются через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Секция пользователей -->
+            <section class="admin-panel" id="usersPanel" data-panel="users">
+                <div class="admin-panel__header">
+                    <h1 class="admin-panel__title" data-i18n="admin.usersTitle">Пользователи</h1>
+                    <p class="admin-panel__subtitle" data-i18n="admin.usersSubtitle">Управление аккаунтами пользователей</p>
+                </div>
+
+                <div class="admin-toolbar">
+                    <div class="admin-search">
+                        <input type="search" id="userSearch" class="form-input"
+                               data-i18n-placeholder="admin.searchPlaceholder"
+                               placeholder="Поиск пользователей..."
+                               aria-label="Поиск пользователей">
+                    </div>
+                </div>
+
+                <div class="users-table-container">
+                    <table class="users-table" aria-label="Список пользователей">
+                        <thead>
+                        <tr>
+                            <th data-i18n="admin.table.name">Имя</th>
+                            <th data-i18n="admin.table.email">Email</th>
+                            <th data-i18n="admin.table.role">Роль</th>
+                            <th data-i18n="admin.table.registered">Дата регистрации</th>
+                            <th data-i18n="admin.table.actions">Действия</th>
+                        </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                        <!-- Данные загружаются через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Секция отзывов -->
+            <section class="admin-panel" id="reviewsPanel" data-panel="reviews">
+                <div class="admin-panel__header">
+                    <h1 class="admin-panel__title" data-i18n="admin.reviewsTitle">Отзывы</h1>
+                    <p class="admin-panel__subtitle" data-i18n="admin.reviewsSubtitle">Модерация отзывов покупателей</p>
+                </div>
+
+                <div class="admin-toolbar">
+                    <div class="admin-search">
+                        <input type="search" id="reviewSearch" class="form-input"
+                               data-i18n-placeholder="admin.searchPlaceholder"
+                               placeholder="Поиск отзывов..."
+                               aria-label="Поиск отзывов">
+                    </div>
+                    <select id="reviewProductFilter" class="form-select">
+                        <option value="all" data-i18n="admin.allProducts">Все товары</option>
+                    </select>
+                </div>
+
+                <div class="reviews-list-container" id="reviewsListContainer">
+                    <!-- Отзывы загружаются через JS -->
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+<footer class="footer" data-footer>
+    <div class="container">
+        <p data-i18n="footer.copyright">© 2025 PORTEN. Все права защищены.</p>
+    </div>
+</footer>
+
+<!-- Модальное окно товара (исправленная структура) -->
+<div class="modal-overlay" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modalTitle" data-i18n="admin.addProduct">Добавить товар</h2>
+            <button class="modal-close" data-modal-close aria-label="Закрыть модальное окно">&times;</button>
+        </div>
+
+        <div class="modal-body">
+            <form class="product-form" id="productForm" novalidate>
+                <input type="hidden" id="productId" name="id">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productName" data-i18n="admin.productName">Название <span class="required">*</span></label>
+                        <input type="text" id="productName" name="name" class="form-input" required
+                               data-i18n-placeholder="admin.productNamePlaceholder" placeholder="Введите название">
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice" data-i18n="admin.price">Цена (BYN) <span class="required">*</span></label>
+                        <input type="number" id="productPrice" name="price" class="form-input" min="0" step="0.01" required
+                               data-i18n-placeholder="admin.pricePlaceholder" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productCategory" data-i18n="admin.category">Категория <span class="required">*</span></label>
+                    <select id="productCategory" name="category" class="form-select" required>
+                        <option value="" data-i18n="admin.selectCategory">Выберите категорию</option>
+                        <option value="watches" data-i18n="category.watches">Часы</option>
+                        <option value="belts" data-i18n="category.belts">Ремни</option>
+                        <option value="wallets" data-i18n="category.wallets">Кошельки</option>
+                        <option value="accessories" data-i18n="category.accessories">Аксессуары</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="productImage" data-i18n="admin.image">URL изображения</label>
+                    <input type="url" id="productImage" name="image" class="form-input"
+                           data-i18n-placeholder="admin.imagePlaceholder" placeholder="assets/images/...">
+                </div>
+
+                <div class="form-group">
+                    <label for="productDescription" data-i18n="admin.description">Описание</label>
+                    <textarea id="productDescription" name="description" class="form-textarea" rows="4"
+                              data-i18n-placeholder="admin.descriptionPlaceholder" placeholder="Описание товара..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productInStock" data-i18n="admin.inStock">В наличии</label>
+                        <select id="productInStock" name="inStock" class="form-select">
+                            <option value="true" data-i18n="common.yes">Да</option>
+                            <option value="false" data-i18n="common.no">Нет</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productIsNew" data-i18n="admin.isNew">Новинка</label>
+                        <select id="productIsNew" name="isNew" class="form-select">
+                            <option value="false" data-i18n="common.no">Нет</option>
+                            <option value="true" data-i18n="common.yes">Да</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn--outline" data-modal-close data-i18n="common.cancel">Отмена</button>
+                    <button type="submit" class="btn btn--primary" data-i18n="admin.save">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Скрипты -->
+<script type="module" src="./js/main.js"></script>
+<script type="module" src="./js/admin.js"></script>
+
+</body>
+</html>

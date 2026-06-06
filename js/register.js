@@ -8,51 +8,40 @@ let nicknameAttempts = 0;
 function generateNickname() {
     const firstName = document.getElementById("firstName").value.trim();
     const lastName = document.getElementById("lastName").value.trim();
-
-    // Берём первые 1-3 буквы имени и фамилии
     const namePart = firstName.slice(0, Math.floor(Math.random() * 3) + 1);
     const lastPart = lastName.slice(0, Math.floor(Math.random() * 3) + 1);
-    const num = Math.floor(Math.random() * 990) + 10; // число от 10 до 999
-
+    const num = Math.floor(Math.random() * 990) + 10;
     const suffixes = ["_x", "_pro", "_vip", ""];
     const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
-
     nicknameInput.value = namePart + lastPart + num + suffix;
 }
 
 generateBtn.addEventListener("click", () => {
     nicknameAttempts++;
-
     if (nicknameAttempts >= 5) {
         nicknameInput.removeAttribute("readonly");
         showError("nicknameError", "Лимит генерации исчерпан. Введите никнейм вручную.");
         generateBtn.disabled = true;
         return;
     }
-
     generateNickname();
+    updateSubmitButton();
 });
 
-// ====== ГЕНЕРАЦИЯ ПАРОЛЯ ======
 function generatePassword(length = 12) {
     const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const lower = "abcdefghijklmnopqrstuvwxyz";
     const digits = "0123456789";
     const special = "!@#$%^&*";
     const all = upper + lower + digits + special;
-
-    // Гарантируем наличие каждого типа символов
     let password =
         upper[Math.floor(Math.random() * upper.length)] +
         lower[Math.floor(Math.random() * lower.length)] +
         digits[Math.floor(Math.random() * digits.length)] +
         special[Math.floor(Math.random() * special.length)];
-
     for (let i = 4; i < length; i++) {
         password += all.charAt(Math.floor(Math.random() * all.length));
     }
-
-    // Перемешиваем
     return password.split("").sort(() => Math.random() - 0.5).join("");
 }
 
@@ -60,7 +49,6 @@ document.querySelectorAll('input[name="passwordType"]').forEach(radio => {
     radio.addEventListener("change", () => {
         const passwordField = document.getElementById("password");
         const confirmField = document.getElementById("confirmPassword");
-
         if (radio.value === "auto" && radio.checked) {
             passwordField.value = generatePassword();
             confirmField.value = passwordField.value;
@@ -78,15 +66,22 @@ document.querySelectorAll('input[name="passwordType"]').forEach(radio => {
             passwordField.type = "password";
             confirmField.type = "password";
         }
+        updateSubmitButton();
     });
 });
 
-// ====== УТИЛИТЫ ДЛЯ СООБЩЕНИЙ ======
 function showError(elementId, message) {
     const el = document.getElementById(elementId);
     if (el) {
         el.textContent = message;
         el.style.display = "block";
+
+        // 🔥 Добавляем класс ошибки к соответствующему полю ввода
+        const inputId = elementId.replace('Error', '');
+        const input = document.getElementById(inputId);
+        if (input && input.classList) {
+            input.classList.add('form-input--error');
+        }
     }
 }
 
@@ -95,10 +90,16 @@ function clearError(elementId) {
     if (el) {
         el.textContent = "";
         el.style.display = "none";
+
+        // 🔥 Убираем класс ошибки с поля ввода
+        const inputId = elementId.replace('Error', '');
+        const input = document.getElementById(inputId);
+        if (input && input.classList) {
+            input.classList.remove('form-input--error');
+        }
     }
 }
 
-// Очищаем ошибку при изменении поля
 document.querySelectorAll("#registerForm input, #registerForm select, #registerForm textarea")
     .forEach(input => {
         input.addEventListener("input", () => {
@@ -111,13 +112,13 @@ document.querySelectorAll("#registerForm input, #registerForm select, #registerF
         });
     });
 
-// ====== АКТИВАЦИЯ КНОПКИ ТОЛЬКО ПРИ УСПЕШНОЙ ВАЛИДАЦИИ ======
+document.getElementById("agreement").addEventListener("change", updateSubmitButton);
+
 function updateSubmitButton() {
-    const allValid = validateAll(false); // false = без показа ошибок
+    const allValid = validateAll(false);
     registerBtn.disabled = !allValid;
 }
 
-// ====== TOP-100 ПАРОЛЕЙ 2024 ======
 const TOP100_PASSWORDS = [
     "123456","password","123456789","12345678","12345","1234567","1234567890",
     "1234","qwerty","abc123","111111","123123","admin","letmein","monkey",
@@ -134,41 +135,30 @@ const TOP100_PASSWORDS = [
     "1111","0000","111111111","000000","123","1234512345","112233","121212"
 ];
 
-// ====== ЕДИНАЯ ФУНКЦИЯ ВАЛИДАЦИИ ======
 function validateAll(showErrors = true) {
     let valid = true;
-
-    // Имя
     const firstName = document.getElementById("firstName").value.trim();
     if (!firstName) {
         if (showErrors) showError("firstNameError", "Введите имя");
         valid = false;
     }
-
-    // Фамилия
     const lastName = document.getElementById("lastName").value.trim();
     if (!lastName) {
         if (showErrors) showError("lastNameError", "Введите фамилию");
         valid = false;
     }
-
-    // Email
     const email = document.getElementById("email").value.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         if (showErrors) showError("emailError", "Введите корректный email");
         valid = false;
     }
-
-    // Телефон РБ
     const phone = document.getElementById("phone").value.trim();
     const phoneRegex = /^\+375(25|29|33|44)\d{7}$/;
     if (!phoneRegex.test(phone)) {
         if (showErrors) showError("phoneError", "Введите номер РБ в формате +375XXXXXXXXX");
         valid = false;
     }
-
-    // Дата рождения (16+)
     const birthDate = document.getElementById("birthDate").value;
     if (!birthDate) {
         if (showErrors) showError("birthDateError", "Введите дату рождения");
@@ -182,18 +172,13 @@ function validateAll(showErrors = true) {
             valid = false;
         }
     }
-
-    // Пароль
     const isAutoPassword = document.querySelector('input[name="passwordType"]:checked')?.value === "auto";
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
-
     if (!isAutoPassword) {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,20}$/;
-
         if (!passwordRegex.test(password)) {
-            if (showErrors) showError("passwordError",
-                "Пароль: 8–20 символов, заглавная, строчная, цифра, спецсимвол (@$!%*?&)");
+            if (showErrors) showError("passwordError", "Пароль: 8–20 символов, заглавная, строчная, цифра, спецсимвол (@$!%*?&)");
             valid = false;
         } else if (TOP100_PASSWORDS.includes(password.toLowerCase())) {
             if (showErrors) showError("passwordError", "Пароль слишком распространённый");
@@ -203,45 +188,33 @@ function validateAll(showErrors = true) {
             valid = false;
         }
     }
-
-    // Никнейм
     const nickname = nicknameInput.value.trim();
     if (!nickname) {
         if (showErrors) showError("nicknameError", "Никнейм не может быть пустым");
         valid = false;
     }
-
-    // Соглашение
     const agreement = document.getElementById("agreement");
     if (agreement && !agreement.checked) {
         if (showErrors) showError("agreementError", "Необходимо принять пользовательское соглашение");
         valid = false;
     }
-
     return valid;
 }
 
-// ====== ОТПРАВКА ФОРМЫ ======
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
-
     if (!validateAll(true)) return;
-
     const nickname = nicknameInput.value.trim();
-
     try {
         const usersResponse = await fetch("http://localhost:3000/users");
         const users = await usersResponse.json();
-
         const nicknameExists = users.some(
             u => u.nickname && u.nickname.toLowerCase() === nickname.toLowerCase()
         );
-
         if (nicknameExists) {
             showError("nicknameError", "Такой никнейм уже занят");
             return;
         }
-
         const user = {
             firstName: document.getElementById("firstName").value.trim(),
             lastName: document.getElementById("lastName").value.trim(),
@@ -253,14 +226,12 @@ form.addEventListener("submit", async (event) => {
             password: document.getElementById("password").value,
             role: "customer"
         };
-
         const response = await fetch("http://localhost:3000/users", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user)
         });
-
-       if (response.ok) {
+        if (response.ok) {
             alert("Регистрация успешна!");
             form.reset();
             nicknameAttempts = 0;
@@ -268,15 +239,12 @@ form.addEventListener("submit", async (event) => {
             nicknameInput.setAttribute("readonly", true);
             registerBtn.disabled = true;
         }
-
     } catch (error) {
         console.error(error);
         alert("Ошибка регистрации. Проверьте JSON Server.");
     }
-
 });
 
-// Показать/скрыть пароль — СНАРУЖИ submit, на верхнем уровне
 document.querySelectorAll(".toggle-password").forEach(function(btn) {
     btn.addEventListener("click", function() {
         var input = document.getElementById(btn.dataset.target);
@@ -287,5 +255,8 @@ document.querySelectorAll(".toggle-password").forEach(function(btn) {
             input.type = "password";
             btn.textContent = "👁";
         }
+        updateSubmitButton();
     });
 });
+
+updateSubmitButton();
